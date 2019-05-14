@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>BVS.Data</AssemblyName>
+    <RootNamespace>BVS.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Generated\models\" />
+    <Folder Include="Generated\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.2.0" />
+  </ItemGroup>
+
+</Project>
