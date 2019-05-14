@@ -1,5 +1,7 @@
 
 using System ;
+using System.ComponentModel.DataAnnotations;
+
 /**
 * @(#) Report.cs
 */
@@ -17,7 +19,7 @@ namespace BVS.Data.Models
         public bool Completed { get; set; }
 
         public Worker Author { get; set; }
-
+        [Key]
         public int Id { get; set; }
 
     } 

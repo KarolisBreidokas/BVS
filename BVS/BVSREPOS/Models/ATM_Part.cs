@@ -1,6 +1,9 @@
 /**
 * @(#) ATM_Part.cs
 */
+
+using System.ComponentModel.DataAnnotations;
+
 namespace BVS.Data.Models
 {
 
@@ -9,7 +12,7 @@ namespace BVS.Data.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
-
+        [Key]
         public int Id { get; set; }
 
     } 

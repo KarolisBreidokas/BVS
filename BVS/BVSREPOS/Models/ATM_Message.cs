@@ -1,5 +1,7 @@
 
-using System ;
+using System;
+using System.ComponentModel.DataAnnotations;
+
 /**
 * @(#) ATM_Message.cs
 */
@@ -11,7 +13,7 @@ namespace BVS.Data.Models
         public ATM Autor { get; set; }
 
         public DateTime Date { get; set; }
-
+        [Key]
         public int Id { get; set; }
 
     } 

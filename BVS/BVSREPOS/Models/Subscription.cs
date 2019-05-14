@@ -2,6 +2,8 @@
  * @(#) Subscription.cs
  */
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BVS.Data.Models
 {
     public class Subscription
@@ -10,6 +12,10 @@ namespace BVS.Data.Models
 
         public ATM SubscribedATM { get; set; }
 
+        [ForeignKey(nameof(User))]
+        public int UserId { get; set; }
+        [ForeignKey(nameof(SubscribedATM))]
+        public int ATMId { get; set; }
     }
 
 }

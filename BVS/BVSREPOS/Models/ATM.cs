@@ -1,6 +1,10 @@
 /**
 * @(#) ATM.cs
 */
+
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 namespace BVS.Data.Models
 {
 
@@ -10,12 +14,12 @@ namespace BVS.Data.Models
 
         public string AditionalInfo { get; set; }
 
-        ATM_Transport Transportations { get; set; }
+        ICollection<ATM_Transport> Transportations { get; set; }
 
         public ATM_State State { get; set; }
 
         public bool Online { get; set; }
-
+        [Key]
         public int Id { get; set; }
 
     }

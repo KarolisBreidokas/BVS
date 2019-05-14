@@ -1,5 +1,9 @@
 
-using System ;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 /**
 * @(#) Order.cs
 */
@@ -14,9 +18,11 @@ namespace BVS.Data.Models
 
         public StorageWorker Author { get; set; }
 
-        public OrderedPart Parts { get; set; }
-
+        public ICollection<OrderedPart> Parts { get; set; }
+        [Key]
         public int Id { get; set; }
+        [ForeignKey(nameof(Author))]
+        public int AuthorId { get; set; }
 
     }
 
