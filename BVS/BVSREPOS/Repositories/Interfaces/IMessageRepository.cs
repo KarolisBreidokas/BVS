@@ -2,6 +2,7 @@
  * @(#) IMessageRepository.cs
  */
 
+using BVS.Data.DTOs;
 using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
@@ -13,7 +14,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param Message
 		 * * @return naujos žinutės id
 		 */
-		int SaveMessage();
+		int SaveMessage(NewMessageDto messageDto);
 		
 		/**
 		 * * Ištraukia žinut? iš rep. //pagal ką 

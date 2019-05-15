@@ -11,6 +11,8 @@ namespace BVS.Data.Models
     {
         public Cartridge Cartridge { get; set; }
 
+        [ForeignKey(nameof(Cartridge))]
+        public int CartridgeId { get; set; }
     }
 
 }
