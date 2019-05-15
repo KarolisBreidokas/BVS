@@ -6,30 +6,29 @@ namespace BVS.Data.Repositories.Interfaces
 {public interface IATM_Repository
 	{
 		/**
-		 * Atnaujina bankomato dauomenis suranda bankomatą pagal id
+		 * Atnaujina bankomato dauomenis suranda bankomatą pagal id bus Dto ar viską per parametrus
 		 */
-		
 		void changeData(  );
 		
 		/**
 		 * Paima visus bankomatus is duombazes
 		 */
-		
 		ICollection<ATM> getATMs(  );
 		
+        //?
 		void Exists(  );
 		
 		/**
 		 * Paima bankomatų iš duombazės pagal id
 		 */
 		
-		void getATM(  );
+		ATM getATM( int id);
 		
 		/**
 		 * Ieško bankomato pagal adresą
 		 */
 		
-		void search(  );
+		ICollection<ATM> search(string address);
 		
 		/**
 		 * Atnaujina specifinio bankomato duomenis parenka pagal id
@@ -45,6 +44,7 @@ namespace BVS.Data.Repositories.Interfaces
 		
 		/**
 		 * Pašalina bankomato iš duombazės pajima pagal adresą
+		 * adresą????
 		 */
 		
 		void delete(  );

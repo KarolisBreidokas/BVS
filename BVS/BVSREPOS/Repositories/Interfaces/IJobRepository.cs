@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @(#) IJobRepository.cs
  */
 
@@ -14,15 +14,15 @@ namespace BVS.Data.Repositories.Interfaces
 		void CreateJob(  );
 		
 		/**
-		 * * Gr?�ina s?ra�? darb?. 
+		 * * Grąžina sąrašą darbų. //ar yra paieškos parametrai?
 		 * * @return List<Job>
 		 */
 		void SelectJobs(  );
 		
 		/**
-		 * * Atnaujina nurodyt? darb? b?senas ? "Tvarkomas".
+		 * * Atnaujina nurodyt? darb? b?senas ? "Tvarkomas". // ?
 		 * * @param List<Job> jobs
-		 * * @return string - gra�ina errora arba patvirtinimo zinute.
+		 * * @return string - gražina errora arba patvirtinimo zinute.
 		 */
 		void UpdateStatus(  );
 		

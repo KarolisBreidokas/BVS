@@ -2,6 +2,9 @@
  * @(#) IOrderRepository.cs
  */
 
+using System.Collections.Generic;
+using BVS.Data.Models;
+
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface IOrderRepository
@@ -14,7 +17,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Paima visus uzsakymus is duombazes
 		 */
-		void Select(  );
+		ICollection<Order> Select(  );
 		
 	}
 	
