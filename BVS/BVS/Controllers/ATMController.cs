@@ -16,7 +16,12 @@ namespace BVS.Controllers
         {
             this.repo = repo;
         }
-
+        /*
+         public ATMController()
+         {
+            this.repo = new StubAtmRepository();\\StubAtmRepository - menama repositorija, kuri grąžina menamas reikšmes
+         }
+         */
 
         public IActionResult ViewATMs()
         {
