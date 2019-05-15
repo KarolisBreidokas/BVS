@@ -1,4 +1,7 @@
 ﻿
+using System.Collections.Generic;
+using BVS.Data.Models;
+
 namespace BVS.Data.Repositories.Interfaces
 {public interface IATM_Repository
 	{
@@ -12,7 +15,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * Paima visus bankomatus is duombazes
 		 */
 		
-		void getATMs(  );
+		ICollection<ATM> getATMs(  );
 		
 		void Exists(  );
 		

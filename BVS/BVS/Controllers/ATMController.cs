@@ -4,14 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BVS.Models;
+using BVS.Data.Repositories.Interfaces;
 
 namespace BVS.Controllers
 {
     public class ATMController : Controller
     {
+        private readonly IATM_Repository repo;
+
+        public ATMController(IATM_Repository repo)
+        {
+            this.repo = repo;
+        }
+
+
         public IActionResult ViewATMs()
         {
-            return View();
+            var atms = repo.getATMs();
+            return View(atms);
         }
 
         public IActionResult AddATM()
