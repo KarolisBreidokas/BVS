@@ -17,6 +17,7 @@
   <ItemGroup>
     <Folder Include="Generated\models\" />
     <Folder Include="Generated\Repositories\" />
+    <Folder Include="Generated\Repositories\Interfaces\" />
   </ItemGroup>
 
   <ItemGroup>
