@@ -1,40 +1,43 @@
-/**
+﻿/**
  * @(#) IStorageWorkerRepository.cs
  */
+
+using System.Collections.Generic;
+using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface IStorageWorkerRepository
 	{
 		/**
-		 * Sukuria nauj? sand?linink?
+		 * Sukuria naują sandėlininką
 		 */
 		void createNewStorageWorker(  );
 		
 		/**
-		 * Pajima visus sand?lininkus i� duomen? baz?s
+		 * Pajima visus sandėlininkus iš duomenų bazės
 		 */
-		void getStorageWorkers(  );
+		ICollection<StorageWorker> getStorageWorkers(  );
+
+        /**
+		 * Pajima sandėlininką pagal id
+		 */
+        StorageWorker getStorageWorker(int id);
 		
 		/**
-		 * Pajima sand?linink? pagal id
+		 * ieško darbuotojų pagal pavardę
 		 */
-		void getStorageWorker(  );
+		ICollection<StorageWorker> search(string surname);
 		
 		/**
-		 * ie�ko darbuotoj? pagal pavard?
+		 * Pašalina sandėlininką iš duomen bazės pagal id
 		 */
-		void search(  );
+		void delete(int id);
 		
 		/**
-		 * Pa�alina sand?linink? i� duomen? baz?s pagal id (prie kiekvieno sand?lininko bus delete mygtukas)
+		 * Atnaujina sandėlininko duomenis parenka pagal id
 		 */
-		void delete(  );
-		
-		/**
-		 * Atnaujina sand?lininko duomenis parenka pagal id
-		 */
-		void updateStorageWorkerInfo(  );
+		void updateStorageWorkerInfo();
 		
 	}
 	
