@@ -1,40 +1,43 @@
-/**
+﻿/**
  * @(#) IWorkerRepository.cs
  */
+
+using System.Collections.Generic;
+using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface IWorkerRepository
 	{
 		/**
-		 * Pajima darbuotoj? parenka pagal id
+		 * Pajima darbuotojų duomenis parenka pagal id
 		 */
-		void getEmployee(  );
+		Worker getEmployee(int id);
 		
 		/**
-		 * Pa�alina darbuotoj? i� duombaz?s pajima pagal id (prie kiekvieno darbuotojo bus delete mygtukas)
+		 * Pašalina darbuotoją iš duombazės pajima pagal id (prie kiekvieno darbuotojo bus delete mygtukas)
 		 */
-		void delete(  );
+		void delete(int id);
 		
 		/**
-		 * Ie�ko darbuotoj? pagal pavard?
+		 * Ieško darbuotojo pagal pavardę
 		 */
-		void search(  );
+		Worker search(string surname);
 		
 		/**
-		 * Sukuria nuaj? darbuotoj?
+		 * Sukuria nuają darbuotoją \\pridėti DTO klasę arba atrinti parametrus
 		 */
 		void createNewEmployee(  );
 		
 		/**
-		 * Pajima visus darbuotojus i� duomen? baz?s
+		 * Pajima visus darbuotojus iš duomenų bazės
 		 */
-		void getEmployees(  );
+		ICollection<Worker> getEmployees();
 		
 		/**
-		 * Atnaujina darbuotojo duomenis parenka pagal id
+		 * Atnaujina darbuotojo duomenis parenka pagal id //worker DTO klasė +id
 		 */
-		void updateAccountInfo(  );
+		void updateAccountInfo(int id);
 		
 	}
 	
