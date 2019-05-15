@@ -2,19 +2,22 @@
  * @(#) ISubscriptionRepository.cs
  */
 
+using System.Collections.Generic;
+using BVS.Data.Models;
+
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface ISubscriptionRepository
 	{
-		void Get(  );
+		Subscription Get(int userId, int atmId);
 		
-		void Create(  );
+		void Create(int userId,int atmId);
 		
-		void GetByATM(  );
+		ICollection<User> GetByATM(int atmId);
 		
-		void Delete(  );
+		void Delete(int userId,int atmId);
 		
-		void GetByUser(  );
+		ICollection<ATM> GetByUser(int userId);
 		
 	}
 	
