@@ -1,4 +1,4 @@
-﻿@model BVS.Models.ATMadd;
+﻿
 @{
     ViewData["Title"] = "UpdateATM";
 }
@@ -7,22 +7,9 @@
 @using (Html.BeginForm("UpdateATM", "ATM", FormMethod.Post))
 {
     <p>Adresas: </p>
-    <textarea class="form-control" name="Address" rows="1" placeholder="Gatvė pastato nr. miestas" style="resize: none">@Model.Address</textarea> <br>
+    <textarea class="form-control" name="Address" rows="1" placeholder="Gatvė pastato nr. miestas" style="resize: none" required="">Duomenys is db</textarea> <br>
     <p>Papildoma informacija: </p>
-    <textarea class="form-control" name="AdditionalInfo" rows="5" placeholder="Bankomato modelis, tikslesnė jo vieta pastate ir t.t" style="resize: none">@Model.AdditionalInfo</textarea>
+    <textarea class="form-control" name="AdditionalInfo" rows="5" placeholder="Bankomato modelis, tikslesnė jo vieta pastate ir t.t" style="resize: none" required="">Duomenys is db</textarea>
     <br>
     <button class="btn btn-info" type="submit">Atnaujinti</button>
-}
-
-@if (1 == Model.Error)
-{
-    <font color="red">Iveskite adresą ir papildomą informaciją</font> <br>
-}
-else if (2 == Model.Error)
-{
-    <font color="red">Iveskite adresą</font> <br>
-}
-else if (3 == Model.Error)
-{
-    <font color="red">Iveskite papildomą informaciją</font> <br>
 }
