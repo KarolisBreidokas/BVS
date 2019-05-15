@@ -14,7 +14,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param Job
 		 * * @return int - naujo darbo id
 		 */
-		int CreateJob(  );
+		int CreateJob(AttentionNeededMessage message);
 		
 		/**
 		 * * Grąžina sąrašą darbų. //ar yra paieškos parametrai?
@@ -27,8 +27,11 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param List<Job> jobs
 		 * * @return string - gražina errora arba patvirtinimo zinute.
 		 */
-		int UpdateStatus(  );
-		
-	}
+		void UpdateStatus(JobState state);
+
+        //ar ne geriau būtų UpdateStatus išskirti į UpdateState ir Assign worker
+        void AssignWorker(int workerId);
+
+    }
 	
 }
