@@ -13,6 +13,7 @@ namespace BVS.Data.Models
         public ATM_Part Part { get; set; }
 
         [ForeignKey(nameof(Part))]
+        [Column("PartId")]
         public int PartId { get; set; }
     }
 

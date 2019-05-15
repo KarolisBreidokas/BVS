@@ -14,7 +14,7 @@ namespace BVS.Data.Models
 
         public string AditionalInfo { get; set; }
 
-        ICollection<ATM_Transport> Transportations { get; set; }
+        public ICollection<ATM_Transport> Transportations { get; set; }
 
         public ATM_State State { get; set; }
 

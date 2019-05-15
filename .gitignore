@@ -8,3 +8,4 @@ bin/
 obj/
 /BVS/BVSREPOS/Migrations
 Generated/
+/BVS/BVS/Migrations
