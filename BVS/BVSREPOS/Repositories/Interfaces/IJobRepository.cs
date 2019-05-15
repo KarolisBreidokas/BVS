@@ -24,13 +24,13 @@ namespace BVS.Data.Repositories.Interfaces
 		
 		/**
 		 * * Atnaujina nurodyt? darb? b?senas ? "Tvarkomas". // ?
-		 * * @param List<Job> jobs
+		 * * @param List<Job> jobs 
 		 * * @return string - gražina errora arba patvirtinimo zinute.
 		 */
-		void UpdateStatus(JobState state);
+		void UpdateStatus(int JobId,JobState state);
 
         //ar ne geriau būtų UpdateStatus išskirti į UpdateState ir Assign worker
-        void AssignWorker(int workerId);
+        void AssignWorker(int workerId,ICollection<int> jobIds);
 
     }
 	
