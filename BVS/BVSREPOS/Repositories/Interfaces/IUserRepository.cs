@@ -13,9 +13,9 @@ namespace BVS.Data.Repositories.Interfaces
 		
 		void updateAccountInfo(int id,NewUserDto user);
 		
-		void createNewAccount(NewUserDto user);
+		int createNewAccount(NewUserDto user);
 		
-		void checkData(string username,string password);
+		bool checkData(string username,string password);
 		
 	}
 	

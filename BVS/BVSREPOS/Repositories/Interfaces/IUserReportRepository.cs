@@ -8,7 +8,7 @@ namespace BVS.Data.Repositories.Interfaces
 {
     public interface IUserReportRepository
     {
-        void Add(NewUserReportDto reportDto);
+        int Add(NewUserReportDto reportDto);
 
     }
 

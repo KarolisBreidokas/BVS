@@ -33,12 +33,12 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Pašalina sandėlininką iš duomen bazės pagal id
 		 */
-		void delete(int id);
+		bool delete(int id);
 		
 		/**
 		 * Atnaujina sandėlininko duomenis parenka pagal id
 		 */
-		void updateStorageWorkerInfo(newStorageWorkerDto workerDto);
+		void updateStorageWorkerInfo(int id,newStorageWorkerDto workerDto);
 		
 	}
 	

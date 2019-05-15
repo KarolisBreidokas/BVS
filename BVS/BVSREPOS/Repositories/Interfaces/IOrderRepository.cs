@@ -13,7 +13,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Prideda uzsakyma i duombaze
 		 */
-		void AddOrder(NewOrderDto orderDto);
+		int AddOrder(NewOrderDto orderDto);
 		
 		/**
 		 * Paima visus uzsakymus is duombazes

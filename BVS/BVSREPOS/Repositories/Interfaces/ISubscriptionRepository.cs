@@ -15,7 +15,7 @@ namespace BVS.Data.Repositories.Interfaces
 		
 		ICollection<User> GetByATM(int atmId);
 		
-		void Delete(int userId,int atmId);
+		bool Delete(int userId,int atmId);
 		
 		ICollection<ATM> GetByUser(int userId);
 		

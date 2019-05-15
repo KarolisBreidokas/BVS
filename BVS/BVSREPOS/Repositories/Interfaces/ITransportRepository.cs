@@ -23,7 +23,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * sukuria naują pervežimą
 		 */
-		void createNewTransportation(NewTransportDto transportDto);
+		int createNewTransportation(NewTransportDto transportDto);
 		
 	}
 	
