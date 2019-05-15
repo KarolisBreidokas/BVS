@@ -25,7 +25,7 @@ namespace BVS.Data.Repositories.Interfaces
 		Worker search(string surname);
 		
 		/**
-		 * Sukuria nuają darbuotoją \\pridėti DTO klasę arba atrinti parametrus
+		 * Sukuria nuają darbuotoją \\pridėti DTO klasę arba atrinti parametrus ar grąžinti sukurtą objektą?
 		 */
 		void createNewEmployee(  );
 		
