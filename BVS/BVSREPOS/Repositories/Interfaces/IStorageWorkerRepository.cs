@@ -3,6 +3,7 @@
  */
 
 using System.Collections.Generic;
+using BVS.Data.DTOs;
 using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
@@ -12,7 +13,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Sukuria naują sandėlininką
 		 */
-		void createNewStorageWorker(  );
+		void createNewStorageWorker(newStorageWorkerDto workerDto);
 		
 		/**
 		 * Pajima visus sandėlininkus iš duomenų bazės
@@ -37,7 +38,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Atnaujina sandėlininko duomenis parenka pagal id
 		 */
-		void updateStorageWorkerInfo();
+		void updateStorageWorkerInfo(newStorageWorkerDto workerDto);
 		
 	}
 	

@@ -3,6 +3,7 @@
  */
 
 using System.Collections.Generic;
+using BVS.Data.DTOs;
 using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
@@ -22,12 +23,12 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Ieško darbuotojo pagal pavardę
 		 */
-		Worker search(string surname);
+		ICollection<Worker> search(string surname);
 		
 		/**
 		 * Sukuria nuają darbuotoją \\pridėti DTO klasę arba atrinti parametrus ar grąžinti sukurtą objektą?
 		 */
-		void createNewEmployee(  );
+		void createNewEmployee(NewWorkerDto workerDto);
 		
 		/**
 		 * Pajima visus darbuotojus iš duomenų bazės

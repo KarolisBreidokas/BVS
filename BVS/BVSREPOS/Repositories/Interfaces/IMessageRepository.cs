@@ -13,7 +13,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param Message
 		 * * @return naujos žinutės id
 		 */
-		int SaveMessage(  );
+		int SaveMessage();
 		
 		/**
 		 * * Ištraukia žinut? iš rep. //pagal ką 
