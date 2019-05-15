@@ -34,7 +34,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * Atnaujina specifinio bankomato duomenis parenka pagal id
 		 */
 		
-		void updateATM(  );
+		void updateATMState(int atmId,ATM_State state);
 		
 		/**
 		 * Sukuria / ideda nauaj bankomata i duombaze
