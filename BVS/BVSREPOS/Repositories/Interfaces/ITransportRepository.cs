@@ -15,9 +15,9 @@ namespace BVS.Data.Repositories.Interfaces
 		ICollection<ATM_Transport> getTransportations(  );
 		
 		/**
-		 * Ieško pervežimo pagal naują adresą
+		 * Ieško pervežimo pagal naują adresą //?
 		 */
-		ATM_Transport search(string newAddress  );
+		ATM_Transport search(string newAddress);
 		
 		/**
 		 * sukuria naują pervežimą

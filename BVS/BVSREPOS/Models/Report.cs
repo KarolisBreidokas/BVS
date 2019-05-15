@@ -1,6 +1,7 @@
 
 using System ;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 /**
 * @(#) Report.cs
@@ -21,6 +22,12 @@ namespace BVS.Data.Models
         public Worker Author { get; set; }
         [Key]
         public int Id { get; set; }
+
+        [ForeignKey(nameof(Job))]
+        public int JobId { get; set; }
+
+        [ForeignKey(nameof(Worker))]
+        public int WorkerId { get; set; }
 
     } 
 }
