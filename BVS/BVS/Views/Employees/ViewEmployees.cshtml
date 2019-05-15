@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "ViewEmployees";
+}
+
+<h2>Darbuotojai</h2>
+
+<input type="text" placeholder="Search..." style="height:30px;">
+<button class="btn btn-info" type="button">Ieškoti</button>
+
+<button class="btn btn-info pull-right" type="button">Pridėti darbuotoją</button>
+<br><br>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vardas</th>
+                <th>Pavardė</th>
+                <th>Vartotojo vardas</th>
+                <th>Slaptažodis</th>
+                <th>E.paštas</th>
+                <th>Telefono nr.</th>
+                <th>Atnaujinti</th>
+                <th>Ataskaitos</th>
+                <th>Šalinti</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < 10; i++)
+            {
+                <tr>
+                    <td>Vardas 1</td>
+                    <td>Pavarde 1</td>
+                    <td>Uername 1</td>
+                    <td>Pass 1</td>
+                    <td>pastas@gmail.com</td>
+                    <td>865412365</td>
+                    <td><button class="btn btn-info" type="button">Atnaujinti</button></td>
+                    <td><button class="btn btn-info" type="button">Ataskaitos</button></td>
+                    <td><button class="btn btn-info" type="button">Šalinti</button></td>
+                </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+
+</div>

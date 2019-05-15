@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "ViewATMs";
+}
+
+<h2>Banomatai</h2>
+
+<input type="text" placeholder="Search..." style="height:30px;">
+<button class="btn btn-info" type="button">Ieškoti</button>
+
+<button class="btn btn-info pull-right" type="button" onclick="location.href='@Url.Action("AddATM", "ATM")'">Pridėti bankomatą</button>
+<br><br>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Adresas</th>
+                <th>Papildoma informacija</th>
+                <th>Būsena</th>
+                <th>Ar prijungtas</th>
+                <th>Atnaujinti</th>
+                <th>Šalinti</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < 10; i++)
+            {
+            <tr>
+                <td>Gatve 59 Miestas</td>
+                <td>Modelis - 123 <br /> Vieta - Kaskur pastate gl </td>
+                <td>Veikia</td>
+                <td>Taip</td>
+                <td><button class="btn btn-info" type="button" onclick="location.href='@Url.Action("UpdateATM", "ATM" /* new { tikslus pavadinimas kontroleri = kodas} */)'" )'">Atnaujinti</button></td>
+                <td><button class="btn btn-info" type="button" onclick="location.href='@Url.Action("RemoveATM", "ATM" /* new { tikslus pavadinimas kontroleri = kodas} */)'">Šalinti</button></td>
+            </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+
+</div>
