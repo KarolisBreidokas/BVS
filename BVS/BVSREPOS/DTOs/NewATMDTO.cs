@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BVS.Data.DTOs
 {
-    public class NewATMDTO
+    public class NewATMDto
     {
         public string Address;
         public string AditionalInfo;
