@@ -2,6 +2,10 @@
  * @(#) IOrderRepository.cs
  */
 
+using System.Collections.Generic;
+using BVS.Data.DTOs;
+using BVS.Data.Models;
+
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface IOrderRepository
@@ -9,12 +13,12 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Prideda uzsakyma i duombaze
 		 */
-		void AddOrder(  );
+		int AddOrder(NewOrderDto orderDto);
 		
 		/**
 		 * Paima visus uzsakymus is duombazes
 		 */
-		void Select(  );
+		ICollection<Order> Select(  );
 		
 	}
 	

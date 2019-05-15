@@ -14,12 +14,11 @@ namespace BVS.Data
         public DbSet<ATM> ATMs;
         public DbSet<ATM_Part> ATM_Parts;
         public DbSet<ATM_Transport> ATM_Transports;
-        private DbSet<ATM_Message> atmMessages;
-        private DbSet<InformationalMessage> InformationalMessages;
-        private DbSet<AttentionNeededMessage> attentionNeededMessages;
+        public DbSet<ATM_Message> atmMessages;
+        public DbSet<InformationalMessage> InformationalMessages;
+        public DbSet<AttentionNeededMessage> attentionNeededMessages;
         public DbSet<UserReport> UserReports;
         public DbSet<Report> Reports;
-        //public DbSet<ATM_Message> ATM_Messages;
         public DbSet<Rack> Racks;
         public DbSet<Job> Jobs;
 

@@ -1,24 +1,27 @@
-/**
+ï»¿/**
  * @(#) IMessageRepository.cs
  */
+
+using BVS.Data.DTOs;
+using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface IMessageRepository
 	{
 		/**
-		 * * išsaugo inut? repositorijoje
+		 * * iÅ¡saugo Å¾inutÄ™ repositorijoje
 		 * * @param Message
-		 * * @return string - inut? apie s?kminga išsaugojim? arba error
+		 * * @return naujos Å¾inutÄ—s id
 		 */
-		void SaveMessage(  );
+		int SaveMessage(NewMessageDto messageDto);
 		
 		/**
-		 * * Ištraukia inut? iš rep.
+		 * * IÅ¡traukia Å¾inut? iÅ¡ rep. //pagal kÄ… 
 		 * * @param Message
 		 * * @return Message
 		 */
-		void GetMessage(  );
+		ATM_Message GetMessage(  );
 		
 	}
 	

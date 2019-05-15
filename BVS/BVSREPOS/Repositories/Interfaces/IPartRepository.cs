@@ -2,6 +2,9 @@
  * @(#) IPartRepository.cs
  */
 
+using System.Collections.Generic;
+using BVS.Data.Models;
+
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface IPartRepository
@@ -9,7 +12,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Paima visas bankomato dalis
 		 */
-		void Select(  );
+		ICollection<ATM_Part> Select(  );
 		
 	}
 	

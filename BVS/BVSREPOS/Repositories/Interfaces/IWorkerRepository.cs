@@ -3,6 +3,7 @@
  */
 
 using System.Collections.Generic;
+using BVS.Data.DTOs;
 using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
@@ -17,17 +18,17 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Pašalina darbuotoją iš duombazės pajima pagal id (prie kiekvieno darbuotojo bus delete mygtukas)
 		 */
-		void delete(int id);
+		bool delete(int id);
 		
 		/**
 		 * Ieško darbuotojo pagal pavardę
 		 */
-		Worker search(string surname);
+		ICollection<Worker> search(string surname);
 		
 		/**
-		 * Sukuria nuają darbuotoją \\pridėti DTO klasę arba atrinti parametrus
+		 * Sukuria nuają darbuotoją \\pridėti DTO klasę arba atrinti parametrus ar grąžinti sukurtą objektą?
 		 */
-		void createNewEmployee(  );
+		int createNewEmployee(NewWorkerDto workerDto);
 		
 		/**
 		 * Pajima visus darbuotojus iš duomenų bazės
@@ -37,7 +38,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Atnaujina darbuotojo duomenis parenka pagal id //worker DTO klasė +id
 		 */
-		void updateAccountInfo(int id);
+		void updateAccountInfo(int id,NewWorkerDto workerDto);
 		
 	}
 	

@@ -1,53 +1,54 @@
 ﻿
 using System.Collections.Generic;
+using BVS.Data.DTOs;
 using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
 {public interface IATM_Repository
 	{
 		/**
-		 * Atnaujina bankomato dauomenis suranda bankomatą pagal id
+		 * Atnaujina bankomato dauomenis suranda bankomatą pagal id bus Dto ar viską per parametrus
 		 */
-		
-		void changeData(  );
+		void changeATMData(int id,NewATMDto atmDto);
 		
 		/**
 		 * Paima visus bankomatus is duombazes
 		 */
-		
 		ICollection<ATM> getATMs(  );
 		
-		void Exists(  );
+        //?
+		bool Exists(int id);
 		
 		/**
 		 * Paima bankomatų iš duombazės pagal id
 		 */
 		
-		void getATM(  );
+		ATM getATM( int id);
 		
 		/**
 		 * Ieško bankomato pagal adresą
 		 */
 		
-		void search(  );
+		ICollection<ATM> search(string address);
 		
 		/**
 		 * Atnaujina specifinio bankomato duomenis parenka pagal id
 		 */
 		
-		void updateATM(  );
+		void updateATMState(int atmId,ATM_State state);
 		
 		/**
 		 * Sukuria / ideda nauaj bankomata i duombaze
 		 */
 		
-		void createNewATM(  );
+		int createNewATM(NewATMDto atmDto);
 		
 		/**
 		 * Pašalina bankomato iš duombazės pajima pagal adresą
+		 * adresą????
 		 */
 		
-		void delete(  );
+		bool delete(int id);
 		
 	}
 	

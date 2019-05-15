@@ -1,6 +1,9 @@
-/**
+﻿/**
  * @(#) IJobRepository.cs
  */
+
+using System.Collections.Generic;
+using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
 {
@@ -9,23 +12,26 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * * sukuria nauja darba repositorijoje.
 		 * * @param Job
-		 * * @return string - pranesimas kad darbas sukurtas
+		 * * @return int - naujo darbo id
 		 */
-		void CreateJob(  );
+		int CreateJob(AttentionNeededMessage message);
 		
 		/**
-		 * * Gr?�ina s?ra�? darb?. 
+		 * * Grąžina sąrašą darbų. //ar yra paieškos parametrai?
 		 * * @return List<Job>
 		 */
-		void SelectJobs(  );
+		ICollection<Job> SelectJobs(  );
 		
 		/**
-		 * * Atnaujina nurodyt? darb? b?senas ? "Tvarkomas".
-		 * * @param List<Job> jobs
-		 * * @return string - gra�ina errora arba patvirtinimo zinute.
+		 * * Atnaujina nurodyt? darb? b?senas ? "Tvarkomas". // ?
+		 * * @param List<Job> jobs 
+		 * * @return string - gražina errora arba patvirtinimo zinute.
 		 */
-		void UpdateStatus(  );
-		
-	}
+		void UpdateStatus(int JobId,JobState state);
+
+        //ar ne geriau būtų UpdateStatus išskirti į UpdateState ir Assign worker
+        void AssignWorker(int workerId,ICollection<int> jobIds);
+
+    }
 	
 }

@@ -2,17 +2,20 @@
  * @(#) IUserRepository.cs
  */
 
+using BVS.Data.DTOs;
+using BVS.Data.Models;
+
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface IUserRepository
 	{
-		void getUserInfo(  );
+		User getUserInfo(int id);
 		
-		void updateAccountInfo(  );
+		void updateAccountInfo(int id,NewUserDto user);
 		
-		void createNewAccount(  );
+		int createNewAccount(NewUserDto user);
 		
-		void checkData(  );
+		bool checkData(string username,string password);
 		
 	}
 	

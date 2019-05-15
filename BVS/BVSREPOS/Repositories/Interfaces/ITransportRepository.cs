@@ -1,25 +1,29 @@
-/**
+﻿/**
  * @(#) ITransportRepository.cs
  */
+
+using System.Collections.Generic;
+using BVS.Data.DTOs;
+using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
 {
 	public interface ITransportRepository
 	{
 		/**
-		 * pajima visus perve�imus i� duombaz?s
+		 * paima visus pervežimus iš duombazės
 		 */
-		void getTransportations(  );
+		ICollection<ATM_Transport> getTransportations(  );
 		
 		/**
-		 * Ie�ko perve�im? pagal nauj? adres?
+		 * Ieško pervežimo pagal naują adresą //?
 		 */
-		void search(  );
+		ATM_Transport search(string newAddress);
 		
 		/**
-		 * sukuria nauj? perve�im?
+		 * sukuria naują pervežimą
 		 */
-		void createNewTransportation(  );
+		int createNewTransportation(NewTransportDto transportDto);
 		
 	}
 	
