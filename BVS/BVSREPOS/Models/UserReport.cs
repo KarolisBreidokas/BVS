@@ -17,7 +17,6 @@ namespace BVS.Data.Models
         public User Author { get; set; }
 
         public int Id { get; set; }
-        [ForeignKey(nameof(Author))]
         public int UserId { get; set; }
     } 
 }

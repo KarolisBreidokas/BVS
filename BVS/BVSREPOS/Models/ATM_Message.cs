@@ -16,7 +16,6 @@ namespace BVS.Data.Models
         public DateTime Date { get; set; }
         [Key]
         public int Id { get; set; }
-        [ForeignKey(nameof(Autor))]
         public int AuthorId { get; set; }
 
     } 
