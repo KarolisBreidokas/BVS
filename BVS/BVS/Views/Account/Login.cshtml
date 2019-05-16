@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Prisijungimas</h2>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <input class="center-block" name="Username" placeholder="Prisijungimo vardas" style="resize: none" required=""> <br>
+    <input class="center-block" name="Password" type="password" rows="1" cols="20" placeholder="Slaptažodis" style="resize: none" required="">
+    <br>
+    <button class="btn btn-info center-block" type="submit">Prisijungti</button>
+}
+
