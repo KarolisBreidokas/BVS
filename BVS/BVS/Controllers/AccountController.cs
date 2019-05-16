@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BVS.Data.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BVS.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUserRepository _repository;
+
+        public AccountController(IUserRepository repository)
+        {
+            _repository = repository;
+        }
+
+
         public IActionResult Login()
         {
             return View();

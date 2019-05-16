@@ -2,6 +2,7 @@
  * @(#) IUserRepository.cs
  */
 
+using System.Threading.Tasks;
 using BVS.Data.DTOs;
 using BVS.Data.Models;
 
@@ -9,13 +10,13 @@ namespace BVS.Data.Repositories.Interfaces
 {
 	public interface IUserRepository
 	{
-		User getUserInfo(int id);
-		
-		void updateAccountInfo(int id,NewUserDto user);
-		
-		int createNewAccount(NewUserDto user);
-		
-		bool checkData(string username,string password);
+		Task<User> getUserInfo(int id);
+
+        Task updateAccountInfo(int id,NewUserDto user);
+
+        Task<int> createNewAccount(NewUserDto user);
+
+        Task<bool> checkData(string username,string password);
 		
 	}
 	
