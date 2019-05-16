@@ -14,15 +14,15 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param Message
 		 * * @return naujos žinutės id
 		 */
-		int SaveMessage(NewMessageDto messageDto);
-		
-		/**
+		int SaveMessage(NewMessageDto messageDto);  //REIKIA
+
+        /**
 		 * * Ištraukia žinut? iš rep. //pagal ką 
 		 * * @param Message
 		 * * @return Message
 		 */
-		ATM_Message GetMessage(  );
-		
-	}
+        ATM_Message GetMessage(  );     //REIKIA
+
+    }
 	
 }

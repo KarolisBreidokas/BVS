@@ -12,8 +12,8 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Paima visas bankomato dalis
 		 */
-		ICollection<ATM_Part> Select(  );
-		
-	}
+		ICollection<ATM_Part> Select(  );       //REIKIA
+
+    }
 	
 }

@@ -23,22 +23,22 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Ieško darbuotojo pagal pavardę
 		 */
-		ICollection<Worker> search(string surname);
-		
-		/**
+		ICollection<Worker> search(string surname);     //REIKIA
+
+        /**
 		 * Sukuria nuają darbuotoją \\pridėti DTO klasę arba atrinti parametrus ar grąžinti sukurtą objektą?
 		 */
-		int createNewEmployee(NewWorkerDto workerDto);
+        int createNewEmployee(NewWorkerDto workerDto);
 		
 		/**
 		 * Pajima visus darbuotojus iš duomenų bazės
 		 */
-		ICollection<Worker> getEmployees();
-		
-		/**
+		ICollection<Worker> getEmployees();     //REIKIA
+
+        /**
 		 * Atnaujina darbuotojo duomenis parenka pagal id //worker DTO klasė +id
 		 */
-		void updateAccountInfo(int id,NewWorkerDto workerDto);
+        void updateAccountInfo(int id,NewWorkerDto workerDto);
 		
 	}
 	
