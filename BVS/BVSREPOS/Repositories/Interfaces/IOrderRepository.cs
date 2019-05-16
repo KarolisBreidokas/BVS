@@ -13,13 +13,13 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Prideda uzsakyma i duombaze
 		 */
-		int AddOrder(NewOrderDto orderDto);
-		
-		/**
+		int AddOrder(NewOrderDto orderDto);     //REIKIA
+
+        /**
 		 * Paima visus uzsakymus is duombazes
 		 */
-		ICollection<Order> Select(  );
-		
-	}
+        ICollection<Order> Select(  );      //REIKIA
+
+    }
 	
 }

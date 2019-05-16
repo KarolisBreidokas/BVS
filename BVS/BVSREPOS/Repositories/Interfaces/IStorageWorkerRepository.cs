@@ -18,7 +18,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Pajima visus sandėlininkus iš duomenų bazės
 		 */
-		ICollection<StorageWorker> getStorageWorkers(  );
+		ICollection<StorageWorker> getStorageWorkers(  );       //REIKIA
 
         /**
 		 * Pajima sandėlininką pagal id
@@ -28,12 +28,12 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * ieško darbuotojų pagal pavardę
 		 */
-		ICollection<StorageWorker> search(string surname);
-		
-		/**
+		ICollection<StorageWorker> search(string surname);      //REIKIA
+
+        /**
 		 * Pašalina sandėlininką iš duomen bazės pagal id
 		 */
-		bool delete(int id);
+        bool delete(int id);
 		
 		/**
 		 * Atnaujina sandėlininko duomenis parenka pagal id

@@ -39,7 +39,7 @@ namespace BVS.Controllers
             return View();
         }
 
-        public IActionResult RemoveATM()
+        public ActionResult RemoveATM()
         {
             return View("ViewATMs");
         }

@@ -9,46 +9,46 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Atnaujina bankomato dauomenis suranda bankomatą pagal id bus Dto ar viską per parametrus
 		 */
-		void changeATMData(int id,NewATMDto atmDto);
-		
-		/**
+		void changeATMData(int id,NewATMDto atmDto);        //REIKIA
+
+        /**
 		 * Paima visus bankomatus is duombazes
 		 */
-		ICollection<ATM> getATMs(  );
+        ICollection<ATM> getATMs(  );       //REIKIA
 		
         //?
-		bool Exists(int id);
-		
-		/**
+		bool Exists(int id);            //REIKIA
+
+        /**
 		 * Paima bankomatų iš duombazės pagal id
 		 */
-		
-		ATM getATM( int id);
-		
-		/**
+
+        ATM getATM( int id);        //REIKIA
+
+        /**
 		 * Ieško bankomato pagal adresą
 		 */
-		
-		ICollection<ATM> search(string address);
-		
-		/**
+
+        ICollection<ATM> search(string address);        //REIKIA
+
+        /**
 		 * Atnaujina specifinio bankomato duomenis parenka pagal id
 		 */
-		
-		void updateATMState(int atmId,ATM_State state);
-		
-		/**
+
+        void updateATMState(int atmId,ATM_State state);     //REIKIA
+
+        /**
 		 * Sukuria / ideda nauaj bankomata i duombaze
 		 */
-		
-		int createNewATM(NewATMDto atmDto);
-		
-		/**
+
+        int createNewATM(NewATMDto atmDto);     //REIKIA
+
+        /**
 		 * Pašalina bankomato iš duombazės pajima pagal adresą
 		 * adresą????
 		 */
-		
-		bool delete(int id);
+
+        bool delete(int id);    //REIKIA
 		
 	}
 	

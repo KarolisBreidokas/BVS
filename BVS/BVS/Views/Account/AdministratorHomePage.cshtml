@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewData["Title"] = "AdministratorHomePage";
+}
+
+<h2>Administratoriaus pagrindinis puslapis</h2>
+
+<button class="btn btn-info" type="button" onclick="location.href='@Url.Action("ViewATMs", "ATM")'">Bankomatai</button> <br /> <br />
+<button class="btn btn-info" type="button" >Bankomatų pervežimas</button> <br /> <br />
+<button class="btn btn-info" type="button" onclick="location.href='@Url.Action("ViewEmployees", "Employees")'">Darbuotojai</button>

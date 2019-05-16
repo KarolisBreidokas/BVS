@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "ProblemForm";
+}
+
+<h2>Pranešti apie nesklandumus</h2>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="dropdown">
+        <select class="btn btn-primary dropdown-toggle" name="Address" required="">
+            <option value="" selected disabled hidden>Pasirinkite bankomato adresą</option>
+            @for (int i = 0; i < 5; i++)
+            {
+                <option value="@i">Adresas @i</option>
+            }
+        </select>
+    </div>
+    <br>
+    <textarea class="form-control" name="Problem" rows="5" placeholder="Nesklandumai" style="resize: none" required=""></textarea>
+    <br>
+    <button class="btn btn-info" type="submit">Pateikti</button>
+}
