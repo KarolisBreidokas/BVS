@@ -5,4 +5,20 @@
 
 <h2>Registracija</h2>
 
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <p>Vardas</p>
+    <input class="form-control" name="Name" placeholder="Vardas" pattern="[A-Za-z]*" style="resize: none" required=""> <br>
+    <p>Pavardė</p>
+    <input class="form-control" name="Lastname" placeholder="Pavardė" pattern="[A-Za-z]*" style="resize: none" required=""> <br>
+    <p>Prisijungimo vardas</p>
+    <input class="form-control" name="Username" placeholder="Prisijungimo vardas" style="resize: none" required=""> <br>
+    <p>Slaptažodis</p>
+    <input class="form-control" name="Password" type="password" placeholder="Splatažodis" style="resize: none" required=""> <br>
+    <p>E. paštas</p>
+    <input class="form-control" name="Email" type="email" placeholder="E. paštas" style="resize: none" required=""> <br>
+    <br>
+    <button class="btn btn-info " type="submit">Užsiregistruoti</button>
+}
+
 
