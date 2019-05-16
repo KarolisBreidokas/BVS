@@ -23,10 +23,8 @@ namespace BVS.Data.Models
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(Job))]
         public int JobId { get; set; }
 
-        [ForeignKey(nameof(Worker))]
         public int WorkerId { get; set; }
 
     } 

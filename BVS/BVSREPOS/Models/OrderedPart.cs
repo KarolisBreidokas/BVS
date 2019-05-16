@@ -14,9 +14,7 @@ namespace BVS.Data.Models
         public ATM_Part Part { get; set; }
 
         public Order Order { get; set; }
-        [ForeignKey(nameof(Part))]
         public int PartId { get; set; }
-        [ForeignKey(nameof(Order))]
         public int OrderId { get; set; }
     }
 

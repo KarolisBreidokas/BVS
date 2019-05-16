@@ -15,10 +15,8 @@ namespace BVS.Data.Models
 
         public Rack racks { get; set; }
 
-        [ForeignKey(nameof(racks))]
         public int RackId { get; set; }
 
-        [ForeignKey(nameof(parts))]
         public int PartId { get; set; }
     }
 

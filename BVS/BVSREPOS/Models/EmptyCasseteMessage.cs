@@ -11,8 +11,6 @@ namespace BVS.Data.Models
     {
         public Cartridge Cartridge { get; set; }
 
-        [ForeignKey(nameof(Cartridge))]
-        [Column("PartId")]
         public int CartridgeId { get; set; }
     }
 

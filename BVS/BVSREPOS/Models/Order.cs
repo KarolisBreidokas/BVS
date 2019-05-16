@@ -21,7 +21,6 @@ namespace BVS.Data.Models
         public ICollection<OrderedPart> Parts { get; set; }
         [Key]
         public int Id { get; set; }
-        [ForeignKey(nameof(Author))]
         public int AuthorId { get; set; }
 
     }

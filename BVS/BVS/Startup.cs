@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BVS.Configuration;
 using BVS.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace BVS
         {
             services.AddDbContext<BVSDBContext>(
                 opt => opt.UseSqlServer(Configuration["ConnectionStrings:default"],b=>b.MigrationsAssembly("BVS")));
+            services.InjectRepositories();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
