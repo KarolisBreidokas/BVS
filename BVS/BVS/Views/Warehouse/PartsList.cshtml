@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "PartsList";
+}
+
+<h2>Sandėlys</h2>
+
+<input type="text" placeholder="Search..." style="height:30px;">
+<button class="btn btn-info" type="button">Ieškoti</button>
+
+<br><br>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Pavadinimas</th>
+                <th>Aprašymas</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < 10; i++)
+            {
+            <tr>
+                <td width="30%">Monitorius</td>
+                <td width="70%">Rodo vaizda</td>                
+            </tr>
+            }
+
+        </tbody>
+
+
+    </table>
+
+</div>
+

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "OrderForm";
+}
+
+<h2>Užsakymas</h2>
+
+@using (Html.BeginForm("OrderForm", "Order", FormMethod.Post))
+{
+    <p>Dalys: </p>
+    <textarea class="form-control" name="Dalys" rows="5" placeholder="Dalių pavadinimai" style="resize: none" required=""></textarea> <br>
+    <p>Kaina: </p>
+    <textarea class="form-control" name="Kaina" rows="1" placeholder="EU" style="resize: none" required=""></textarea>
+    <br>
+    <button class="btn btn-info" type="submit">Užsakyti</button>
+}
