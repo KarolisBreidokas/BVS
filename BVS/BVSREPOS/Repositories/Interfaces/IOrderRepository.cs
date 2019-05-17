@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using BVS.Data.DTOs;
 using BVS.Data.Models;
+using System.Threading.Tasks;
 
 namespace BVS.Data.Repositories.Interfaces
 {
@@ -13,7 +14,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Prideda uzsakyma i duombaze
 		 */
-		int AddOrder(NewOrderDto orderDto);     //REIKIA
+		Task<int> AddOrder(NewOrderDto orderDto);     //REIKIA
 
         /**
 		 * Paima visus uzsakymus is duombazes

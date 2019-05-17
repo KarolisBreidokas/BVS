@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using BVS.Data.Models;
+using System.Threading.Tasks;
 
 namespace BVS.Data.Repositories.Interfaces
 {
@@ -11,7 +12,7 @@ namespace BVS.Data.Repositories.Interfaces
 	{
 		Subscription Get(int userId, int atmId);
 		
-		void Create(int userId,int atmId);          //REIKIA
+		Task Create(int userId,int atmId);          //REIKIA
 
         ICollection<User> GetByATM(int atmId);      //REIKIA
 
