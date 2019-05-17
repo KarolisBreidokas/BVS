@@ -18,7 +18,7 @@ namespace BVS.Data.Repositories.Interfaces
         ICollection<ATM> getATMs(  );       //REIKIA
 		
         //?
-		bool Exists(int id);            //REIKIA
+		Task<bool> Exists(int id);            //REIKIA
 
         /**
 		 * Paima bankomatų iš duombazės pagal id

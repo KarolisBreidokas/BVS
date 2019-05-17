@@ -53,9 +53,8 @@ namespace BVS.Data.Repositories
                 throw new NotImplementedException();
 
             _ATMs.Remove(ans);
-            await _context.SaveChangesAsync();
 
-            return true;            //nzn kaip gaut boola pasalino ar ne
+            return await _context.SaveChangesAsync() > 0;        //nzn kaip gaut boola pasalino ar ne
         }
 
         /// <summary>
@@ -63,9 +62,13 @@ namespace BVS.Data.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public bool Exists(int id)
+        public async Task<bool> Exists(int id)
         {
-            throw new NotImplementedException();
+            var ans = await _ATMs.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (ans is null)
+                return false;
+            else
+                return true;
         }
 
         public async Task<ATM> getATM(int id)
