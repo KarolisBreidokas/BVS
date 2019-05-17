@@ -3,6 +3,8 @@
  */
 
 using System.Collections.Generic;
+using BVS.Data.DTOs;
+using System.Threading.Tasks;
 using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
@@ -14,7 +16,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param Job
 		 * * @return int - naujo darbo id
 		 */
-		int CreateJob(AttentionNeededMessage message);      //REIKIA
+		Task<int> CreateJob(NewJobDto message);      //REIKIA
 
         /**
 		 * * Grąžina sąrašą darbų. //ar yra paieškos parametrai?
@@ -27,10 +29,10 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param List<Job> jobs 
 		 * * @return string - gražina errora arba patvirtinimo zinute.
 		 */
-        void UpdateStatus(int JobId,JobState state);        //REIKIA
+        Task UpdateStatus(int JobId,JobState state);        //REIKIA
 
         //ar ne geriau būtų UpdateStatus išskirti į UpdateState ir Assign worker
-        void AssignWorker(int workerId,ICollection<int> jobIds);
+        Task AssignWorker(int workerId,ICollection<int> jobIds);
 
     }
 	
