@@ -7,6 +7,6 @@ namespace BVS.Data.DTOs
     public class OrderedPartDto
     {
         public int Price;
-        public int PriceId;
+        public int PartId;
     }
 }
