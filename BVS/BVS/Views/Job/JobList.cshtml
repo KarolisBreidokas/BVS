@@ -1,0 +1,55 @@
+﻿@model ICollection<BVS.Data.Models.Job>
+@{
+    ViewData["Title"] = "JobList";
+}
+
+<h2>Darbų sąrašas</h2>
+@using (Html.BeginForm("JobList", "Job", FormMethod.Post))
+{
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Aprašymas</th>
+                    <th>Būsena</th>
+                    <th>Darbą pasirinkes darbuotojas</th>
+                    <th>Pasirinkti</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+                @foreach(var j in Model)
+                {
+                    <tr>
+                        <td>@j.Description</td>
+                        <td>@j.State </td>
+                        <td>
+                            @if(j.State == BVS.Data.Models.JobState.Atliekamas || j.State == BVS.Data.Models.JobState.Atliktas)
+                            {
+                                @j.AssignedWorker.Name @j.AssignedWorker.Surname
+                            }
+                            else
+                            {
+                                <p>-</p>
+                            }
+                        </td>
+                        <td>
+                            @if (j.State == BVS.Data.Models.JobState.Neatliktas || j.State == BVS.Data.Models.JobState.Nepriskirtas)
+                            {
+                                <input type="checkbox" name="selectedJobsId" value="@j.Id">
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+
+        </table>
+
+    </div>
+
+    <button class="btn btn-info" type="submit">Pasirinkti</button>
+}

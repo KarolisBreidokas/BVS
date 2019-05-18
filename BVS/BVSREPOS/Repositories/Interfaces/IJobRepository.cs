@@ -22,7 +22,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * Grąžina sąrašą darbų. //ar yra paieškos parametrai?
 		 * * @return List<Job>
 		 */
-        ICollection<Job> SelectJobs(  );        //REIKIA
+        Task<ICollection<Job>> SelectJobs(  );        //REIKIA
 
         /**
 		 * * Atnaujina nurodyt? darb? b?senas ? "Tvarkomas". // ?

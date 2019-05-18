@@ -28,7 +28,7 @@ namespace BVS.Data.Repositories
             {
                 Date = reportDto.Date,
                 Description = reportDto.Description,
-                Author = await _context.Workers.Where(x => x.Id == reportDto.AuthorId).FirstOrDefaultAsync()
+                UserId = reportDto.AuthorId
             };
             _userReports.Add(userReportEntity);
             await _context.SaveChangesAsync();

@@ -6,13 +6,13 @@ namespace BVS.Data.Models
 
     public enum JobState
     {
-        Complete,
+        Atliktas,
 
-        Incomplete,
+        Neatliktas,
 
-        Unassigned,
+        Nepriskirtas,
 
-        WorkingOn,
+        Atliekamas,
 
     } 
 }

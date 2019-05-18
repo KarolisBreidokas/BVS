@@ -1,18 +1,18 @@
-﻿
+﻿@model ICollection<BVS.Data.Models.ATM>
 @{
     ViewData["Title"] = "ProblemForm";
 }
 
 <h2>Pranešti apie nesklandumus</h2>
 
-@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+@using (Html.BeginForm("ProblemForm", "Problem", FormMethod.Post))
 {
     <div class="dropdown">
-        <select class="btn btn-primary dropdown-toggle" name="Address" required="">
+        <select class="btn btn-primary dropdown-toggle" name="ATMId" required="">
             <option value="" selected disabled hidden>Pasirinkite bankomato adresą</option>
-            @for (int i = 0; i < 5; i++)
+            @foreach(var a in Model)
             {
-                <option value="@i">Adresas @i</option>
+                <option value="@a.Id">@a.Address</option>
             }
         </select>
     </div>

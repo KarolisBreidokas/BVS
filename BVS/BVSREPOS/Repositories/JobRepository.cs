@@ -47,9 +47,9 @@ namespace BVS.Data.Repositories
             return jobEntity.Id;
         }
 
-        public ICollection<Job> SelectJobs()
+        public async Task<ICollection<Job>> SelectJobs()
         {
-            var ans = _jobs.ToList();
+            var ans = await _jobs.ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;
