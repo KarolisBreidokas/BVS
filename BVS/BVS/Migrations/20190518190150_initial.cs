@@ -9,23 +9,7 @@ namespace BVS.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ATM",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Address = table.Column<string>(nullable: true),
-                    AditionalInfo = table.Column<string>(nullable: true),
-                    State = table.Column<int>(nullable: false),
-                    Online = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ATM", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ATM_Part",
+                name: "ATM_Parts",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -37,11 +21,27 @@ namespace BVS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ATM_Part", x => x.Id);
+                    table.PrimaryKey("PK_ATM_Parts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rack",
+                name: "ATMs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Address = table.Column<string>(nullable: true),
+                    AditionalInfo = table.Column<string>(nullable: true),
+                    State = table.Column<int>(nullable: false),
+                    Online = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ATMs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Racks",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -49,11 +49,11 @@ namespace BVS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rack", x => x.Id);
+                    table.PrimaryKey("PK_Racks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -69,11 +69,11 @@ namespace BVS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ATM_Transport",
+                name: "ATM_Transports",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -84,17 +84,17 @@ namespace BVS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ATM_Transport", x => x.Id);
+                    table.PrimaryKey("PK_ATM_Transports", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ATM_Transport_ATM_AtmId",
+                        name: "FK_ATM_Transports_ATMs_AtmId",
                         column: x => x.AtmId,
-                        principalTable: "ATM",
+                        principalTable: "ATMs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ATM_Message",
+                name: "atmMessages",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -102,22 +102,29 @@ namespace BVS.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     AuthorId = table.Column<int>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
+                    CartridgeId = table.Column<int>(nullable: true),
                     PartId = table.Column<int>(nullable: true),
                     Body = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ATM_Message", x => x.Id);
+                    table.PrimaryKey("PK_atmMessages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ATM_Message_ATM_AuthorId",
+                        name: "FK_atmMessages_ATMs_AuthorId",
                         column: x => x.AuthorId,
-                        principalTable: "ATM",
+                        principalTable: "ATMs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ATM_Message_ATM_Part_PartId",
+                        name: "FK_atmMessages_ATM_Parts_CartridgeId",
+                        column: x => x.CartridgeId,
+                        principalTable: "ATM_Parts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_atmMessages_ATM_Parts_PartId",
                         column: x => x.PartId,
-                        principalTable: "ATM_Part",
+                        principalTable: "ATM_Parts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -134,21 +141,21 @@ namespace BVS.Migrations
                 {
                     table.PrimaryKey("PK_PartInStorage", x => new { x.PartId, x.RackId });
                     table.ForeignKey(
-                        name: "FK_PartInStorage_ATM_Part_PartId",
+                        name: "FK_PartInStorage_ATM_Parts_PartId",
                         column: x => x.PartId,
-                        principalTable: "ATM_Part",
+                        principalTable: "ATM_Parts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PartInStorage_Rack_RackId",
+                        name: "FK_PartInStorage_Racks_RackId",
                         column: x => x.RackId,
-                        principalTable: "Rack",
+                        principalTable: "Racks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -159,11 +166,11 @@ namespace BVS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_User_AuthorId",
+                        name: "FK_Orders_Users_AuthorId",
                         column: x => x.AuthorId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -179,21 +186,21 @@ namespace BVS.Migrations
                 {
                     table.PrimaryKey("PK_Subscription", x => new { x.UserId, x.ATMId });
                     table.ForeignKey(
-                        name: "FK_Subscription_ATM_ATMId",
+                        name: "FK_Subscription_ATMs_ATMId",
                         column: x => x.ATMId,
-                        principalTable: "ATM",
+                        principalTable: "ATMs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Subscription_User_UserId",
+                        name: "FK_Subscription_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserReport",
+                name: "UserReports",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -204,17 +211,17 @@ namespace BVS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserReport", x => x.Id);
+                    table.PrimaryKey("PK_UserReports", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserReport_User_UserId",
+                        name: "FK_UserReports_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Job",
+                name: "Jobs",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -226,17 +233,17 @@ namespace BVS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Job", x => x.Id);
+                    table.PrimaryKey("PK_Jobs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Job_ATM_Message_MessageId",
+                        name: "FK_Jobs_atmMessages_MessageId",
                         column: x => x.MessageId,
-                        principalTable: "ATM_Message",
+                        principalTable: "atmMessages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Job_User_WorkerId",
+                        name: "FK_Jobs_Users_WorkerId",
                         column: x => x.WorkerId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -253,21 +260,21 @@ namespace BVS.Migrations
                 {
                     table.PrimaryKey("PK_OrderedPart", x => new { x.PartId, x.OrderId });
                     table.ForeignKey(
-                        name: "FK_OrderedPart_Order_OrderId",
+                        name: "FK_OrderedPart_Orders_OrderId",
                         column: x => x.OrderId,
-                        principalTable: "Order",
+                        principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderedPart_ATM_Part_PartId",
+                        name: "FK_OrderedPart_ATM_Parts_PartId",
                         column: x => x.PartId,
-                        principalTable: "ATM_Part",
+                        principalTable: "ATM_Parts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Report",
+                name: "Reports",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -280,61 +287,61 @@ namespace BVS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Report", x => x.Id);
+                    table.PrimaryKey("PK_Reports", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Report_Job_JobId",
+                        name: "FK_Reports_Jobs_JobId",
                         column: x => x.JobId,
-                        principalTable: "Job",
+                        principalTable: "Jobs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Report_User_WorkerId",
+                        name: "FK_Reports_Users_WorkerId",
                         column: x => x.WorkerId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_ATM_Message_AuthorId",
-                table: "ATM_Message",
-                column: "AuthorId");
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Discriminator", "Email", "Name", "Password", "Surname", "Username" },
+                values: new object[] { -1, "Administrator", "karolis.breidokas@ktu.edu", "Karolis", "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe", "Breidokas", "Root" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ATM_Message_PartId",
-                table: "ATM_Message",
-                column: "PartId",
-                unique: true,
-                filter: "[PartId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ATM_Message_PartId1",
-                table: "ATM_Message",
-                column: "PartId",
-                unique: true,
-                filter: "[PartId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ATM_Transport_AtmId",
-                table: "ATM_Transport",
+                name: "IX_ATM_Transports_AtmId",
+                table: "ATM_Transports",
                 column: "AtmId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Job_MessageId",
-                table: "Job",
+                name: "IX_atmMessages_AuthorId",
+                table: "atmMessages",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_atmMessages_CartridgeId",
+                table: "atmMessages",
+                column: "CartridgeId",
+                unique: true,
+                filter: "[CartridgeId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_atmMessages_PartId",
+                table: "atmMessages",
+                column: "PartId",
+                unique: true,
+                filter: "[PartId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Jobs_MessageId",
+                table: "Jobs",
                 column: "MessageId",
                 unique: true,
                 filter: "[MessageId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Job_WorkerId",
-                table: "Job",
+                name: "IX_Jobs_WorkerId",
+                table: "Jobs",
                 column: "WorkerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Order_AuthorId",
-                table: "Order",
-                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderedPart_OrderId",
@@ -342,18 +349,23 @@ namespace BVS.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_AuthorId",
+                table: "Orders",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PartInStorage_RackId",
                 table: "PartInStorage",
                 column: "RackId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Report_JobId",
-                table: "Report",
+                name: "IX_Reports_JobId",
+                table: "Reports",
                 column: "JobId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Report_WorkerId",
-                table: "Report",
+                name: "IX_Reports_WorkerId",
+                table: "Reports",
                 column: "WorkerId");
 
             migrationBuilder.CreateIndex(
@@ -362,15 +374,15 @@ namespace BVS.Migrations
                 column: "ATMId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserReport_UserId",
-                table: "UserReport",
+                name: "IX_UserReports_UserId",
+                table: "UserReports",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ATM_Transport");
+                name: "ATM_Transports");
 
             migrationBuilder.DropTable(
                 name: "OrderedPart");
@@ -379,34 +391,34 @@ namespace BVS.Migrations
                 name: "PartInStorage");
 
             migrationBuilder.DropTable(
-                name: "Report");
+                name: "Reports");
 
             migrationBuilder.DropTable(
                 name: "Subscription");
 
             migrationBuilder.DropTable(
-                name: "UserReport");
+                name: "UserReports");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Rack");
+                name: "Racks");
 
             migrationBuilder.DropTable(
-                name: "Job");
+                name: "Jobs");
 
             migrationBuilder.DropTable(
-                name: "ATM_Message");
+                name: "atmMessages");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "ATM");
+                name: "ATMs");
 
             migrationBuilder.DropTable(
-                name: "ATM_Part");
+                name: "ATM_Parts");
         }
     }
 }

@@ -35,7 +35,7 @@ namespace BVS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ATM");
+                    b.ToTable("ATMs");
                 });
 
             modelBuilder.Entity("BVS.Data.Models.ATM_Message", b =>
@@ -55,7 +55,7 @@ namespace BVS.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("ATM_Message");
+                    b.ToTable("atmMessages");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("ATM_Message");
                 });
@@ -75,7 +75,7 @@ namespace BVS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ATM_Part");
+                    b.ToTable("ATM_Parts");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("ATM_Part");
                 });
@@ -96,7 +96,7 @@ namespace BVS.Migrations
 
                     b.HasIndex("AtmId");
 
-                    b.ToTable("ATM_Transport");
+                    b.ToTable("ATM_Transports");
                 });
 
             modelBuilder.Entity("BVS.Data.Models.Job", b =>
@@ -121,7 +121,7 @@ namespace BVS.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("Job");
+                    b.ToTable("Jobs");
                 });
 
             modelBuilder.Entity("BVS.Data.Models.Order", b =>
@@ -140,7 +140,7 @@ namespace BVS.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("BVS.Data.Models.OrderedPart", b =>
@@ -181,7 +181,7 @@ namespace BVS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rack");
+                    b.ToTable("Racks");
                 });
 
             modelBuilder.Entity("BVS.Data.Models.Report", b =>
@@ -206,7 +206,7 @@ namespace BVS.Migrations
 
                     b.HasIndex("WorkerId");
 
-                    b.ToTable("Report");
+                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("BVS.Data.Models.Subscription", b =>
@@ -243,7 +243,7 @@ namespace BVS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
@@ -264,14 +264,12 @@ namespace BVS.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserReport");
+                    b.ToTable("UserReports");
                 });
 
             modelBuilder.Entity("BVS.Data.Models.AttentionNeededMessage", b =>
                 {
                     b.HasBaseType("BVS.Data.Models.ATM_Message");
-
-                    b.Property<int>("PartId");
 
                     b.HasDiscriminator().HasValue("AttentionNeededMessage");
                 });
@@ -299,6 +297,17 @@ namespace BVS.Migrations
                     b.HasBaseType("BVS.Data.Models.User");
 
                     b.HasDiscriminator().HasValue("Administrator");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            Email = "karolis.breidokas@ktu.edu",
+                            Name = "Karolis",
+                            Password = "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe",
+                            Surname = "Breidokas",
+                            Username = "Root"
+                        });
                 });
 
             modelBuilder.Entity("BVS.Data.Models.StorageWorker", b =>
@@ -324,9 +333,11 @@ namespace BVS.Migrations
                 {
                     b.HasBaseType("BVS.Data.Models.AttentionNeededMessage");
 
-                    b.HasIndex("PartId")
+                    b.Property<int>("CartridgeId");
+
+                    b.HasIndex("CartridgeId")
                         .IsUnique()
-                        .HasFilter("[PartId] IS NOT NULL");
+                        .HasFilter("[CartridgeId] IS NOT NULL");
 
                     b.ToTable("EmptyCasseteMessages");
 
@@ -337,9 +348,10 @@ namespace BVS.Migrations
                 {
                     b.HasBaseType("BVS.Data.Models.AttentionNeededMessage");
 
+                    b.Property<int>("PartId");
+
                     b.HasIndex("PartId")
                         .IsUnique()
-                        .HasName("IX_ATM_Message_PartId1")
                         .HasFilter("[PartId] IS NOT NULL");
 
                     b.ToTable("PartBroken");
@@ -446,8 +458,8 @@ namespace BVS.Migrations
                 {
                     b.HasOne("BVS.Data.Models.Cartridge", "Cartridge")
                         .WithOne()
-                        .HasForeignKey("BVS.Data.Models.EmptyCasseteMessage", "PartId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BVS.Data.Models.EmptyCasseteMessage", "CartridgeId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("BVS.Data.Models.PartBrokenMessage", b =>
@@ -455,7 +467,6 @@ namespace BVS.Migrations
                     b.HasOne("BVS.Data.Models.ATM_Part", "Part")
                         .WithOne()
                         .HasForeignKey("BVS.Data.Models.PartBrokenMessage", "PartId")
-                        .HasConstraintName("FK_ATM_Message_ATM_Part_PartId1")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

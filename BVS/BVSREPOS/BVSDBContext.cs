@@ -34,7 +34,17 @@ namespace BVS.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Administrator>();
+            modelBuilder.Entity<Administrator>().HasData(
+                new Administrator()
+                {
+                    Id = -1,
+                    Name = "Karolis",
+                    Surname = "Breidokas",
+                    Email = "karolis.breidokas@ktu.edu",
+                    Username = "Root",
+                    Password = "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe"
+                }
+            );
             modelBuilder.Entity<ATM>()
                 .HasMany(x => x.Transportations)
                 .WithOne(x => x.Transported)
@@ -79,8 +89,7 @@ namespace BVS.Data
                 .HasForeignKey(x => x.PartId);
             modelBuilder.Entity<PartBrokenMessage>()
                 .HasOne(x => x.Part)
-                .WithOne()
-                .HasForeignKey<PartBrokenMessage>(x => x.PartId);
+                .WithOne().HasForeignKey<PartBrokenMessage>(x => x.PartId);
             var partStorageEntity=modelBuilder.Entity<PartInStorage>();
             partStorageEntity.HasKey(x => new {x.PartId, x.RackId});
             partStorageEntity.HasOne(x => x.parts)
@@ -100,17 +109,7 @@ namespace BVS.Data
             subscriptionEntity.HasOne(x => x.SubscribedATM)
                 .WithMany()
                 .HasForeignKey(x => x.ATMId);
-            modelBuilder.Entity<User>().HasData(
-                new Administrator()
-                {
-                    Id = 0,
-                    Name = "Karolis",
-                    Surname = "Breidokas",
-                    Email = "karolis.breidokas@ktu.edu",
-                    Username = "Root",
-                    Password = BCryptHelper.HashPassword("toor", BCryptHelper.GenerateSalt())
-                }
-            );
+            modelBuilder.Entity<User>();
             modelBuilder.Entity<UserReport>()
                 .HasOne(x => x.Author)
                 .WithMany()
