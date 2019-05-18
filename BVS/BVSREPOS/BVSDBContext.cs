@@ -1,25 +1,26 @@
 ﻿using BVS.Data.Models;
+using DevOne.Security.Cryptography.BCrypt;
 using Microsoft.EntityFrameworkCore;
 
 namespace BVS.Data
 {
     public class BVSDBContext : DbContext
     {
-        public DbSet<Order> Orders;
-        public DbSet<StorageWorker> StorageWorkers;
-        public DbSet<Worker> Workers;
-        public DbSet<User> Users;
-        public DbSet<Subscription> Subscription;
-        public DbSet<ATM> ATMs;
-        public DbSet<ATM_Part> ATM_Parts;
-        public DbSet<ATM_Transport> ATM_Transports;
-        public DbSet<ATM_Message> atmMessages;
-        public DbSet<InformationalMessage> InformationalMessages;
-        public DbSet<AttentionNeededMessage> attentionNeededMessages;
-        public DbSet<UserReport> UserReports;
-        public DbSet<Report> Reports;
-        public DbSet<Rack> Racks;
-        public DbSet<Job> Jobs;
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<StorageWorker> StorageWorkers { get; set; }
+        public DbSet<Worker> Workers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Subscription> Subscription { get; set; }
+        public DbSet<ATM> ATMs { get; set; }
+        public DbSet<ATM_Part> ATM_Parts { get; set; }
+        public DbSet<ATM_Transport> ATM_Transports { get; set; }
+        public DbSet<ATM_Message> atmMessages { get; set; }
+        public DbSet<InformationalMessage> InformationalMessages { get; set; }
+        public DbSet<AttentionNeededMessage> attentionNeededMessages { get; set; }
+        public DbSet<UserReport> UserReports { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<Rack> Racks { get; set; }
+        public DbSet<Job> Jobs { get; set; }
 
         public BVSDBContext() : base()
         {
@@ -99,7 +100,17 @@ namespace BVS.Data
             subscriptionEntity.HasOne(x => x.SubscribedATM)
                 .WithMany()
                 .HasForeignKey(x => x.ATMId);
-            modelBuilder.Entity<User>();
+            modelBuilder.Entity<User>().HasData(
+                new Administrator()
+                {
+                    Id = 0,
+                    Name = "Karolis",
+                    Surname = "Breidokas",
+                    Email = "karolis.breidokas@ktu.edu",
+                    Username = "Root",
+                    Password = BCryptHelper.HashPassword("toor", BCryptHelper.GenerateSalt())
+                }
+            );
             modelBuilder.Entity<UserReport>()
                 .HasOne(x => x.Author)
                 .WithMany()
