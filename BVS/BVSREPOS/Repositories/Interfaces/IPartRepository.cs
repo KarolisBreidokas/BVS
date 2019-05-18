@@ -7,7 +7,7 @@ using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
 {
-	public interface IUserReportRepository
+	public interface IPartRepository
 	{
 		/**
 		 * Paima visas bankomato dalis

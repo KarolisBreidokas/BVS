@@ -1,4 +1,4 @@
-﻿
+﻿@model List<BVS.Data.Models.ATM>
 @{
     ViewData["Title"] = "ViewATMs";
 }
@@ -24,24 +24,33 @@
         </thead>
 
         <tbody>
-            @for (int i = 0; i < 10; i++)
+            @foreach(var atm in Model)
             {
                 <tr>
-                    <td>Gatve 59 Miestas</td>
-                    <td>Modelis - 123 <br /> Vieta - Kaskur pastate gl </td>
-                    <td>Veikia</td>
-                    <td>Taip</td>
-                    <td><button class="btn btn-info" type="button" onclick="location.href='@Url.Action("UpdateATM", "ATM" /* new { tikslus pavadinimas kontroleri = kodas} */)'" )'">Atnaujinti</button></td>
+                    <td>@atm.Address</td>
+                    <td>@atm.AditionalInfo </td>
+                    <td>@atm.State</td>
+                    <td>
+                        @if (atm.Online)
+                        {
+                            <p>Taip</p>
+                        }
+                        else
+                        {
+                            <p>Ne</p>
+                        }
+                    </td>
+                    <td><button class="btn btn-info" type="button" onclick="location.href='@Url.Action("UpdateATM", "ATM",  new { atmId = atm.Id} )'" )'">Atnaujinti</button></td>
                     <td>
                         <button class="btn btn-info" type="button" data-toggle="modal" data-target="#myModal">Šalinti</button>
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">
-                                        <p>Ar tikrai norite pašalinti bankomatą esantį ADRESAS</p>
+                                        <p>Ar tikrai norite pašalinti bankomatą esantį @atm.Address</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("RemoveATM", "ATM"/* new { tikslus pavadinimas kontroleri = kodas} */)'">Taip</button>
+                                        <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("RemoveATM", "ATM",  new { atmId = atm.Id} )'">Taip</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Ne</button>
                                     </div>
                                 </div>

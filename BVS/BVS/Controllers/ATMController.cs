@@ -34,12 +34,12 @@ namespace BVS.Controllers
             return View();
         }
 
-        public IActionResult UpdateATM()
+        public IActionResult UpdateATM(int atmId)
         {
             return View();
         }
 
-        public ActionResult RemoveATM()
+        public ActionResult RemoveATM(int atmId)
         {
             return View("ViewATMs");
         }

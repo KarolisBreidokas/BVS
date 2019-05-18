@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BVS.Data.Repositories
 {
-    public class PartRepository:IUserReportRepository
+    public class PartRepository:IPartRepository
     {
         private readonly DbSet<ATM_Part> _ATM_parts;
         private readonly BVSDBContext _context;

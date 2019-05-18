@@ -34,10 +34,5 @@ namespace BVS.Data.Repositories
             await _context.SaveChangesAsync();
             return userReportEntity.Id;
         }
-
-        public ICollection<ATM_Part> Select()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
