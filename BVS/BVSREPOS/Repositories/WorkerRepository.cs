@@ -22,40 +22,54 @@ namespace BVS.Data.Repositories
             _workers = _context.Workers;
         }
 
-        public int createNewEmployee(NewWorkerDto workerDto)
+        public async Task<int> createNewEmployee(NewWorkerDto workerDto)
         {
-            throw new NotImplementedException();
+
+            var userEntity = workerDto.MapToWorker(new Worker());
+            _workers.Add(userEntity);
+            await _context.SaveChangesAsync();
+            return userEntity.Id;
         }
 
-        public bool delete(int id)
+        public async Task<bool> delete(int id)
         {
-            throw new NotImplementedException();
+            var worker = await _workers.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (worker is null)
+                throw new NotImplementedException();
+            _workers.Remove(worker);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Worker getEmployee(int id)
+        public  async Task<Worker> getEmployee(int id)
         {
-            throw new NotImplementedException();
+            var worker = await _workers.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (worker is null)
+                throw new NotImplementedException();
+            return worker;
         }
 
-        public ICollection<Worker> getEmployees()
+        public async Task< ICollection<Worker>> getEmployees()
         {
-            var ans = _workers.ToList();
+            var ans =await _workers.ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;
         }
 
-        public ICollection<Worker> search(string surname)
+        public async Task<ICollection<Worker>> search(string surname)
         {
-            var ans = _workers.Where(x => x.Surname.Contains(surname)).ToList();
+            var ans = await _workers.Where(x => x.Surname.Contains(surname)).ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;
         }
 
-        public void updateAccountInfo(int id, NewWorkerDto workerDto)
+        public async Task updateAccountInfo(int id, NewWorkerDto workerDto)
         {
-            throw new NotImplementedException();
+            var user = await getEmployee(id);
+            _workers.Attach(user);
+            workerDto.MapToWorker(user);
+            await _context.SaveChangesAsync();
         }
     }
 

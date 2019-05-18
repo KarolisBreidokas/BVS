@@ -19,16 +19,20 @@ namespace BVS.Controllers
             this.repoStorageWorker = repoStorageWorker;
         }
 
-        public IActionResult ViewEmployees()
+        public async Task<IActionResult> ViewEmployees()
         {
-            AllEmployees employees = new AllEmployees(repoWorker.getEmployees(), repoStorageWorker.getStorageWorkers());
+            var workers = await repoWorker.getEmployees();
+            var storageWorkers = await repoStorageWorker.getStorageWorkers();
+            AllEmployees employees = new AllEmployees(workers, storageWorkers);
             return View(employees);
         }
 
         [HttpPost]
-        public ActionResult ViewEmployees(string Search)
+        public async Task<IActionResult> ViewEmployees(string Search)
         {
-            AllEmployees employees = new AllEmployees(repoWorker.search(Search), repoStorageWorker.search(Search));
+            var workers = await repoWorker.search(Search);
+            var storageWorkers = await repoStorageWorker.search(Search);
+            AllEmployees employees = new AllEmployees(workers, storageWorkers);
             return View(employees);
         }
     }

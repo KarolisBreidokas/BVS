@@ -12,7 +12,7 @@ namespace BVS.Data.DTOs
         {
             MapToUser(worker);
             worker.PhoneNo = PhoneNo;
-            return worker
+            return worker;
         }
     }
 }
