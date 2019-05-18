@@ -19,7 +19,7 @@ namespace BVS.Data.Repositories.Interfaces
         /**
 		 * Paima visus uzsakymus is duombazes
 		 */
-        ICollection<Order> Select(  );      //REIKIA
+        Task<ICollection<Order>> Select(  );      //REIKIA
 
     }
 	

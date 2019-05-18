@@ -1,16 +1,45 @@
-﻿
+﻿@model ICollection<BVS.Data.Models.ATM_Part>
 @{
     ViewData["Title"] = "OrderForm";
 }
 
 <h2>Užsakymas</h2>
 
-@using (Html.BeginForm("OrderForm", "Order", FormMethod.Post))
+@using (Html.BeginForm("OrderForm", "Warehouse", FormMethod.Post))
 {
-    <p>Dalys: </p>
-    <textarea class="form-control" name="Dalys" rows="5" placeholder="Dalių pavadinimai" style="resize: none" required=""></textarea> <br>
-    <p>Kaina: </p>
-    <textarea class="form-control" name="Kaina" rows="1" placeholder="EU" style="resize: none" required=""></textarea>
-    <br>
-    <button class="btn btn-info" type="submit">Užsakyti</button>
+    <select name="listbox" id="listbox" multiple>
+        @*@foreach (var item in Model)
+            {
+                <option value="@item.Name">
+                    @item.Name
+                </option>
+            }*@
+        <option value="Bla">
+            Bla
+        </option>
+        <option value="Bla2">
+            Bla2
+        </option>
+    </select>
+    <input type="submit">
 }
+
+@*@using (Html.BeginForm("OrderForm", "Order", FormMethod.Post))
+    {
+        <p>Dalis: </p>
+        @foreach (var part in Model)
+        {
+            <option value="">Volvo</option>
+        }
+
+        @Html.DropDownList("Dalis", new SelectList(Enum.GetValues(typeof(m))))
+
+        <select>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+        </select>
+
+        <button class="btn btn-info" type="submit">Užsakyti</button>
+    }*@
+

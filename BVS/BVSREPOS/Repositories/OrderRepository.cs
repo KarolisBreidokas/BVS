@@ -1,11 +1,13 @@
-﻿using BVS.Data.DTOs;
-using BVS.Data.Models;
-using BVS.Data.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using BVS.Data.DTOs;
+using BVS.Data.Models;
+using BVS.Data.Repositories.Interfaces;
+using DevOne.Security.Cryptography.BCrypt;
+using Microsoft.EntityFrameworkCore;
 
 namespace BVS.Data.Repositories
 {
@@ -44,9 +46,9 @@ namespace BVS.Data.Repositories
             return orderEntity.Id;
         }
 
-        public ICollection<Order> Select()
+        public async Task<ICollection<Order>> Select()
         {
-            var ans = _orders.ToList();
+            var ans = await _orders.ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;
