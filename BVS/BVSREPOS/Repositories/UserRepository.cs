@@ -41,27 +41,16 @@ namespace BVS.Data.Repositories
                 throw new IndexOutOfRangeException();
             }
 
-            ans.Email = user.Email;
-            ans.Name = user.Name;
-            ans.Surname = user.Surname;
-            ans.Username = user.Username;
-            ans.Password = BCryptHelper.HashPassword(user.Password, BCryptHelper.GenerateSalt());
-            _users.Update(ans);
+            _users.Attach(ans);
+            user.MapToUser(ans);
             await _context.SaveChangesAsync();
         }
 
         public async Task<int> createNewAccount(NewUserDto user)
         {
-            var userEntity = new User
-            {
-                Name = user.Name,
-                Surname = user.Surname,
-                Email = user.Email,
-                Password = BCryptHelper.HashPassword(user.Password, BCryptHelper.GenerateSalt()),
-                Username = user.Username
-            };
+            var userEntity = user.MapToUser(new User());
             _users.Add(userEntity);
-            var t=await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return userEntity.Id;
         }
 

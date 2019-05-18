@@ -10,15 +10,15 @@ namespace BVS.Data.Repositories.Interfaces
 {
 	public interface ISubscriptionRepository
 	{
-		Subscription Get(int userId, int atmId);
+		Task<Subscription> Get(int userId, int atmId);
 		
 		Task Create(int userId,int atmId);          //REIKIA
 
-        ICollection<User> GetByATM(int atmId);      //REIKIA
+        Task<ICollection<User>> GetByATM(int atmId);      //REIKIA
 
-        bool Delete(int userId,int atmId);
+        Task<bool> Delete(int userId, int atmId);
 		
-		ICollection<ATM> GetByUser(int userId);     //REIKIA
+		Task<ICollection<ATM>> GetByUser(int userId);     //REIKIA
 
     }
 	

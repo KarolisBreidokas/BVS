@@ -26,33 +26,48 @@ namespace BVS.Data.Repositories
         {
             var subscriptionEntity = new Subscription
             {
-                User = await _context.Users.Where(x => x.Id == userId).FirstOrDefaultAsync(),
-                SubscribedATM = await _context.ATMs.Where(x => x.Id == atmId).FirstOrDefaultAsync()
+                UserId = userId,
+                ATMId = atmId
             };
             await _context.SaveChangesAsync();
         }
 
-        public bool Delete(int userId, int atmId)
+        public async Task<bool> Delete(int userId, int atmId)
         {
-            throw new NotImplementedException();
+            var sub = await _subscriptions.Where(x => x.UserId == userId && x.ATMId == atmId).FirstOrDefaultAsync();
+            if (sub is null)
+                throw new NullReferenceException(nameof(sub));
+            _subscriptions.Remove(sub);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Subscription Get(int userId, int atmId)
+        public async Task<Subscription> Get(int userId, int atmId)
         {
-            throw new NotImplementedException();
+            var sub = await _subscriptions.Include(x=>x.User)
+                .Include(x=>x.SubscribedATM)
+                .Where(x => x.UserId == userId && x.ATMId == atmId).FirstOrDefaultAsync();
+            if (sub is null)
+                throw new NullReferenceException(nameof(sub));
+            return sub;
         }
 
         //useriu sarasas kurie yra uzsiprenumerave sita bankomata
-        public ICollection<User> GetByATM(int atmId)
+        public async Task<ICollection<User>> GetByATM(int atmId)
         {
-            //REIKIA NZN KAIP PADARYT
-            throw new NotImplementedException();
+            var subs = await _subscriptions.Include(x => x.User)
+                .Where(x => x.ATMId == atmId).Select(x => x.User).ToListAsync();
+            if (subs is null)
+                throw new NullReferenceException(nameof(subs));
+            return subs;
         }
 
-        public ICollection<ATM> GetByUser(int userId)
+        public async Task<ICollection<ATM>> GetByUser(int userId)
         {
-            //REIKIA NZN KAIP PADARYT
-            throw new NotImplementedException();
+            var subs = await _subscriptions.Include(x => x.User)
+                .Where(x => x.UserId == userId).Select(x => x.SubscribedATM).ToListAsync();
+            if (subs is null)
+                throw new NullReferenceException(nameof(subs));
+            return subs;
         }
     }
 }

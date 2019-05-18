@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BVS.Data.Repositories
 {
+    [Obsolete]
     public class RackRepository : IRackRepository
     {
         private readonly DbSet<Rack> _racks;

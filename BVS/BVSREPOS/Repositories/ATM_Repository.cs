@@ -27,7 +27,7 @@ namespace BVS.Data.Repositories
             var ans = await _ATMs.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (ans is null)
                 throw new NotImplementedException();
-
+            _ATMs.Attach(ans);
             ans.Address = atmDto.Address;
             ans.AditionalInfo = atmDto.AditionalInfo;
 
@@ -41,7 +41,7 @@ namespace BVS.Data.Repositories
                 Address = atmDto.Address,
                 AditionalInfo = atmDto.AditionalInfo
             };
-
+            _ATMs.Add(ATMEntity);
             await _context.SaveChangesAsync();
             return ATMEntity.Id;
         }
@@ -65,10 +65,7 @@ namespace BVS.Data.Repositories
         public async Task<bool> Exists(int id)
         {
             var ans = await _ATMs.Where(x => x.Id == id).FirstOrDefaultAsync();
-            if (ans is null)
-                return false;
-            else
-                return true;
+            return !(ans is null);
         }
 
         public async Task<ATM> getATM(int id)
@@ -100,7 +97,7 @@ namespace BVS.Data.Repositories
             var ans = await _ATMs.Where(x => x.Id == atmId).FirstOrDefaultAsync();
             if (ans is null)
                 throw new NotImplementedException();
-
+           _ATMs.Attach(ans);
             if (state.Equals("InTransit"))
             {
                 ans.State = state;

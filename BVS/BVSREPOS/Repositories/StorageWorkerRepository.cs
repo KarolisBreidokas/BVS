@@ -22,40 +22,54 @@ namespace BVS.Data.Repositories
             _storageWorkers = _context.StorageWorkers;
         }
 
-        public void createNewStorageWorker(newStorageWorkerDto workerDto)
+        public async Task createNewStorageWorker(newStorageWorkerDto workerDto)
         {
-            throw new NotImplementedException();
+            var worker = workerDto.MapToStorageWorker(new StorageWorker());
+            _storageWorkers.Add(worker);
+            await _context.SaveChangesAsync();
         }
 
-        public bool delete(int id)
+        public async Task<bool> delete(int id)
         {
-            throw new NotImplementedException();
+            var worker = await _storageWorkers.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if(worker is null)
+                throw new NotImplementedException();
+            _storageWorkers.Remove(worker);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public StorageWorker getStorageWorker(int id)
+        public async Task<StorageWorker> getStorageWorker(int id)
         {
-            throw new NotImplementedException();
+            var worker = await _storageWorkers.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (worker is null)
+                throw new NotImplementedException();
+            return worker;
         }
 
-        public ICollection<StorageWorker> getStorageWorkers()
+        public async Task<ICollection<StorageWorker>> getStorageWorkers()
         {
-            var ans = _storageWorkers.ToList();
+            var ans = await _storageWorkers.ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;
         }
 
-        public ICollection<StorageWorker> search(string surname)
+        public async Task<ICollection<StorageWorker>> search(string surname)
         {
-            var ans = _storageWorkers.Where(x => x.Surname.Contains(surname)).ToList();
+            var ans = await _storageWorkers.Where(x => x.Surname.Contains(surname)).ToArrayAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;
         }
 
-        public void updateStorageWorkerInfo(int id, newStorageWorkerDto workerDto)
+        public async Task updateStorageWorkerInfo(int id, newStorageWorkerDto workerDto)
         {
-            throw new NotImplementedException();
+            var worker = await _storageWorkers.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (worker is null)
+                throw new NotImplementedException();
+            _storageWorkers.Attach(worker);
+            workerDto.MapToStorageWorker(worker);
+            await _context.SaveChangesAsync();
         }
     }
 

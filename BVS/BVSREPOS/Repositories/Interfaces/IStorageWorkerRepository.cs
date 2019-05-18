@@ -1,45 +1,46 @@
-﻿/**
+﻿using BVS.Data.DTOs;
+using BVS.Data.Models;
+/**
  * @(#) IStorageWorkerRepository.cs
  */
 
 using System.Collections.Generic;
-using BVS.Data.DTOs;
-using BVS.Data.Models;
+using System.Threading.Tasks;
 
 namespace BVS.Data.Repositories.Interfaces
 {
-	public interface IStorageWorkerRepository
-	{
-		/**
+    public interface IStorageWorkerRepository
+    {
+        /**
 		 * Sukuria naują sandėlininką
 		 */
-		void createNewStorageWorker(newStorageWorkerDto workerDto);
-		
-		/**
+        Task createNewStorageWorker(newStorageWorkerDto workerDto);
+
+        /**
 		 * Pajima visus sandėlininkus iš duomenų bazės
 		 */
-		ICollection<StorageWorker> getStorageWorkers(  );       //REIKIA
+        Task<ICollection<StorageWorker>> getStorageWorkers();       //REIKIA
 
         /**
 		 * Pajima sandėlininką pagal id
 		 */
-        StorageWorker getStorageWorker(int id);
-		
-		/**
+        Task<StorageWorker> getStorageWorker(int id);
+
+        /**
 		 * ieško darbuotojų pagal pavardę
 		 */
-		ICollection<StorageWorker> search(string surname);      //REIKIA
+        Task<ICollection<StorageWorker>> search(string surname);      //REIKIA
 
         /**
 		 * Pašalina sandėlininką iš duomen bazės pagal id
 		 */
-        bool delete(int id);
-		
-		/**
+        Task<bool> delete(int id);
+
+        /**
 		 * Atnaujina sandėlininko duomenis parenka pagal id
 		 */
-		void updateStorageWorkerInfo(int id,newStorageWorkerDto workerDto);
-		
-	}
-	
+        Task updateStorageWorkerInfo(int id, newStorageWorkerDto workerDto);
+
+    }
+
 }
