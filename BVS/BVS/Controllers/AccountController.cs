@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BVS.Data.DTOs;
+using BVS.Data.Models;
 using BVS.Data.Repositories.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
 
 namespace BVS.Controllers
 {
@@ -33,11 +37,23 @@ namespace BVS.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(string Username, string Password)
+        public async Task<IActionResult> Login(LoginDto details)
         {
             //determen witch screen to display
-
-            return Redirect("/Account/AdministratorHomePage");
+            var uid = await _repository.checkData(details);
+            if (uid.HasValue)
+            {
+                var user = await _repository.getUserInfo(uid.Value);
+                if (user is Administrator)
+                {
+                    return View("AdministratorHomePage");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return View();
         }
     }
 }

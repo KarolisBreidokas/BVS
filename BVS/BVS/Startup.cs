@@ -39,6 +39,7 @@ namespace BVS
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSession(x=>x.IdleTimeout=TimeSpan.FromMinutes(60));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

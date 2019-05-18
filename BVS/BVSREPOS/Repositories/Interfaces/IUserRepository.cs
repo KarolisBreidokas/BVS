@@ -16,7 +16,7 @@ namespace BVS.Data.Repositories.Interfaces
 
         Task<int> createNewAccount(NewUserDto user);
 
-        Task<bool> checkData(string username,string password);
+        Task<int?> checkData(LoginDto details);
 		
 	}
 	

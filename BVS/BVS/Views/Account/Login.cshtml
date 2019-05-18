@@ -1,4 +1,4 @@
-﻿
+﻿@model BVS.Data.DTOs.LoginDto
 @{
     ViewData["Title"] = "Login";
 }
@@ -7,8 +7,9 @@
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <input class="center-block" name="Username" placeholder="Prisijungimo vardas" style="resize: none" required=""> <br>
-    <input class="center-block" name="Password" type="password" rows="1" cols="20" placeholder="Slaptažodis" style="resize: none" required="">
+    @Html.TextBoxFor(x=>x.Username,new {@class= "center-block", @style = "resize: none", @required = "", @placeholder = "Prisijungimo vardas" })
+    <br>
+    @Html.TextBoxFor(x=>x.Password,new {@class="center-block", @type = "password" , @rows = "1",@cols="20", @placeholder = "Slaptažodis", @required = "" })
     <br>
     <button class="btn btn-info center-block" type="submit">Prisijungti</button>
 }

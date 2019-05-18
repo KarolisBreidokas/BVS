@@ -11,12 +11,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BVS.Data.Repositories
 {
-    public class WorekerRepository : IWorkerRepository
+    public class WorkerRepository : IWorkerRepository
     {
         private readonly DbSet<Worker> _workers;
         private readonly BVSDBContext _context;
 
-        public WorekerRepository(BVSDBContext context)
+        public WorkerRepository(BVSDBContext context)
         {
             _context = context;
             _workers = _context.Workers;
