@@ -15,6 +15,7 @@ namespace BVS.Configuration
             collection.AddScoped<IUserRepository, UserRepository>();
             collection.AddScoped<IWorkerRepository, WorkerRepository>();
             collection.AddScoped<IStorageWorkerRepository, StorageWorkerRepository>();
+            collection.AddScoped<IATM_Repository, ATM_Repository>();
             return collection;
         }
     }
