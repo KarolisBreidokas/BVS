@@ -5,14 +5,13 @@ namespace BVS.Data.Models
 {
     public enum ATM_State
     {
-        InTransit,
+        Pervežamas,
 
-        NotWorking,
+        Neveikia,
 
-        RequiresAttention,
+        ReikiaAptarnavimo,
 
-        Working,
-
+        Veikia
     }
 
 }

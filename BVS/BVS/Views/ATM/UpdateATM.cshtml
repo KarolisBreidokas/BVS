@@ -1,15 +1,15 @@
-﻿
+﻿@model BVS.Data.Models.ATM
 @{
     ViewData["Title"] = "UpdateATM";
 }
 
 <h2>Atnaujinti bankomato duomenis</h2>
-@using (Html.BeginForm("UpdateATM", "ATM", FormMethod.Post))
+@using (Html.BeginForm("UpdateATM", "ATM", new { atmId = Model.Id}, FormMethod.Post))
 {
     <p>Adresas: </p>
-    <textarea class="form-control" name="Address" rows="1" placeholder="Gatvė pastato nr. miestas" style="resize: none" required="">Duomenys is db</textarea> <br>
+    <textarea class="form-control" name="Address" rows="1" placeholder="Gatvė pastato nr. miestas" style="resize: none" required="">@Model.Address</textarea> <br>
     <p>Papildoma informacija: </p>
-    <textarea class="form-control" name="AdditionalInfo" rows="5" placeholder="Bankomato modelis, tikslesnė jo vieta pastate ir t.t" style="resize: none" required="">Duomenys is db</textarea>
+    <textarea class="form-control" name="AdditionalInfo" rows="5" placeholder="Bankomato modelis, tikslesnė jo vieta pastate ir t.t" style="resize: none" required="">@Model.AditionalInfo</textarea>
     <br>
     <button class="btn btn-info" type="submit">Atnaujinti</button>
 }

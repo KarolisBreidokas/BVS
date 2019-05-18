@@ -54,7 +54,7 @@ namespace BVS.Data.Repositories
 
             _ATMs.Remove(ans);
 
-            return await _context.SaveChangesAsync() > 0;        //nzn kaip gaut boola pasalino ar ne
+            return await _context.SaveChangesAsync() > 0;
         }
 
         /// <summary>

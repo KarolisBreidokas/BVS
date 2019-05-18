@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using BVS.Models;
 using BVS.Data.Repositories.Interfaces;
 
+using BVS.Data.DTOs;
 namespace BVS.Controllers
 {
     public class ATMController : Controller
@@ -36,24 +37,44 @@ namespace BVS.Controllers
 
         public IActionResult UpdateATM(int atmId)
         {
-            return View();
+            var atm = repo.getATM(atmId);
+
+            return View(atm);
         }
 
         public ActionResult RemoveATM(int atmId)
         {
-            return View("ViewATMs");
+            repo.delete(atmId);
+            var atms = repo.getATMs();
+            return View("ViewATMs", atms);
         }
 
         [HttpPost]
         public ActionResult AddATM(string Address, string AdditionalInfo)
         {
-            return View("ViewATMs");
+            NewATMDto newATM = new NewATMDto()
+            {
+                Address = Address,
+                AditionalInfo = AdditionalInfo
+            };
+            repo.createNewATM(newATM);
+
+            var atms = repo.getATMs();
+            return View("ViewATMs", atms);
         }
 
         [HttpPost]
-        public ActionResult UpdateATM(string Address, string AdditionalInfo)
+        public ActionResult UpdateATM(int atmId, string Address, string AdditionalInfo)
         {
-            return View();
+            NewATMDto update = new NewATMDto()
+            {
+                Address = Address,
+                AditionalInfo = AdditionalInfo
+            };
+            repo.changeATMData(atmId, update);
+
+            var atm = repo.getATM(atmId);
+            return View(atm);
         }
     }
 }
