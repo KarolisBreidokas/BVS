@@ -76,17 +76,17 @@ namespace BVS.Data.Repositories
             return ans;
         }
 
-        public ICollection<ATM> getATMs()
+        public async Task<ICollection<ATM>> getATMs()
         {
-            var ans = _ATMs.ToList();
+            var ans = await _ATMs.ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;
         }
 
-        public ICollection<ATM> search(string address)
+        public async Task<ICollection<ATM>> search(string address)
         {
-            var ans = _ATMs.Where(x => x.Address.Contains(address)).ToList();
+            var ans = await _ATMs.Where(x => x.Address.Contains(address)).ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;

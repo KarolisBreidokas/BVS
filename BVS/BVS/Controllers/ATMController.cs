@@ -24,9 +24,9 @@ namespace BVS.Controllers
          }
          */
 
-        public IActionResult ViewATMs()
+        public async Task<IActionResult> ViewATMs()
         {
-            var atms = repo.getATMs();
+            var atms = await repo.getATMs();
             return View(atms);
         }
 
@@ -35,52 +35,52 @@ namespace BVS.Controllers
             return View();
         }
 
-        public IActionResult UpdateATM(int atmId)
+        public async Task<IActionResult> UpdateATM(int atmId)
         {
-            var atm = repo.getATM(atmId);
+            var atm = await repo.getATM(atmId);
 
             return View(atm);
         }
 
-        public ActionResult RemoveATM(int atmId)
+        public async Task<ActionResult> RemoveATM(int atmId)
         {
-            repo.delete(atmId);
-            var atms = repo.getATMs();
+            await repo.delete(atmId);
+            var atms = await repo.getATMs();
             return View("ViewATMs", atms);
         }
 
         [HttpPost]
-        public ActionResult AddATM(string Address, string AdditionalInfo)
+        public async Task<ActionResult> AddATM(string Address, string AdditionalInfo)
         {
             NewATMDto newATM = new NewATMDto()
             {
                 Address = Address,
                 AditionalInfo = AdditionalInfo
             };
-            repo.createNewATM(newATM);
+            await repo.createNewATM(newATM);
 
-            var atms = repo.getATMs();
+            var atms = await repo.getATMs();
             return View("ViewATMs", atms);
         }
 
         [HttpPost]
-        public ActionResult UpdateATM(int atmId, string Address, string AdditionalInfo)
+        public async Task<ActionResult> UpdateATM(int atmId, string Address, string AdditionalInfo)
         {
             NewATMDto update = new NewATMDto()
             {
                 Address = Address,
                 AditionalInfo = AdditionalInfo
             };
-            repo.changeATMData(atmId, update);
+            await repo.changeATMData(atmId, update);
 
-            var atm = repo.getATM(atmId);
+            var atm = await repo.getATM(atmId);
             return View(atm);
         }
 
         [HttpPost]
-        public ActionResult ViewATMs(string Search)
+        public async Task<ActionResult> ViewATMs(string Search)
         {
-            var atm = repo.search(Search);
+            var atm = await repo.search(Search);
             return View(atm);
         }
     }

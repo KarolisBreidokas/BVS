@@ -15,7 +15,7 @@ namespace BVS.Data.Repositories.Interfaces
         /**
 		 * Paima visus bankomatus is duombazes
 		 */
-        ICollection<ATM> getATMs(  );       //REIKIA
+        Task<ICollection<ATM>> getATMs(  );       //REIKIA
 		
         //?
 		Task<bool> Exists(int id);            //REIKIA
@@ -30,7 +30,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * Ieško bankomato pagal adresą
 		 */
 
-        ICollection<ATM> search(string address);        //REIKIA
+        Task<ICollection<ATM>> search(string address);        //REIKIA
 
         /**
 		 * Atnaujina specifinio bankomato duomenis parenka pagal id
