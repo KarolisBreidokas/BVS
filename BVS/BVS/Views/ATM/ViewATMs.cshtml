@@ -5,8 +5,12 @@
 
 <h2>Banomatai</h2>
 
-<input type="text" placeholder="Search..." style="height:30px;">
-<button class="btn btn-info" type="button">Ieškoti</button>
+
+@using (Html.BeginForm("ViewATMs", "ATM", FormMethod.Post))
+{
+    <input type="text" name="Search" placeholder="Search..." style="height:30px;">
+    <button class="btn btn-info" type="submit">Ieškoti</button>
+}
 
 <button class="btn btn-info pull-right" type="button" onclick="location.href='@Url.Action("AddATM", "ATM")'">Pridėti bankomatą</button>
 <br><br>
@@ -24,7 +28,7 @@
         </thead>
 
         <tbody>
-            @foreach(var atm in Model)
+            @foreach (var atm in Model)
             {
                 <tr>
                     <td>@atm.Address</td>

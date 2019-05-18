@@ -76,5 +76,12 @@ namespace BVS.Controllers
             var atm = repo.getATM(atmId);
             return View(atm);
         }
+
+        [HttpPost]
+        public ActionResult ViewATMs(string Search)
+        {
+            var atm = repo.search(Search);
+            return View(atm);
+        }
     }
 }

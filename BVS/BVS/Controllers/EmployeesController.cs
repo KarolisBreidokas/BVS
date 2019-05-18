@@ -24,5 +24,12 @@ namespace BVS.Controllers
             AllEmployees employees = new AllEmployees(repoWorker.getEmployees(), repoStorageWorker.getStorageWorkers());
             return View(employees);
         }
+
+        [HttpPost]
+        public ActionResult ViewEmployees(string Search)
+        {
+            AllEmployees employees = new AllEmployees(repoWorker.search(Search), repoStorageWorker.search(Search));
+            return View(employees);
+        }
     }
 }

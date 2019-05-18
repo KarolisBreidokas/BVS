@@ -5,8 +5,11 @@
 
 <h2>Darbuotojai</h2>
 
-<input type="text" placeholder="Search..." style="height:30px;">
-<button class="btn btn-info" type="button">Ieškoti</button>
+@using (Html.BeginForm("ViewEmployees", "Employees", FormMethod.Post))
+{
+    <input type="text" name="Search" placeholder="Search..." style="height:30px;">
+    <button class="btn btn-info" type="submit">Ieškoti</button>
+}
 
 <button class="btn btn-info pull-right" type="button">Pridėti darbuotoją</button>
 <br><br>
