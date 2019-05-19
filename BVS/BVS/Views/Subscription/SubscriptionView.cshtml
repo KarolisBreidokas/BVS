@@ -1,4 +1,4 @@
-﻿
+﻿@model ICollection<BVS.Data.Models.ATM>
 @{
     ViewData["Title"] = "SubscriptionView";
 }
@@ -9,20 +9,18 @@
     <table class="table">
         <thead>
             <tr>
-                <th>KAS</th>
-                <th>KOKI</th>
-                <th>DUOMENYS</th>
+                <th>Adresas</th>
+                <th>Būsena</th>
                 <th>Atšaukti prenumeratą</th>
             </tr>
         </thead>
 
         <tbody>
-            @for (int i = 0; i < 10; i++)
+            @foreach(var a in Model)
             {
                 <tr>
-                    <td>KAS @i</td>
-                    <td>KOKI @i</td>
-                    <td>DUOMENYS @i</td>
+                    <td>@a.Address</td>
+                    <td>@a.State</td>
                     <td><button class="btn btn-info" type="button">Atšaukti</button></td>
 
                 </tr>

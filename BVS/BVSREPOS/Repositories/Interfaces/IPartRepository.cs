@@ -3,6 +3,7 @@
  */
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BVS.Data.Models;
 
 namespace BVS.Data.Repositories.Interfaces
@@ -12,7 +13,7 @@ namespace BVS.Data.Repositories.Interfaces
 		/**
 		 * Paima visas bankomato dalis
 		 */
-		ICollection<ATM_Part> Select(  );       //REIKIA
+		Task<ICollection<ATM_Part>> Select(  );       //REIKIA
 
     }
 	

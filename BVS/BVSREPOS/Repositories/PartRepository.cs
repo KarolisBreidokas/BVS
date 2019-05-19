@@ -22,9 +22,9 @@ namespace BVS.Data.Repositories
             _ATM_parts = _context.ATM_Parts;
         }
 
-        public ICollection<ATM_Part> Select()
+        public async Task<ICollection<ATM_Part>> Select()
         {
-            var ans = _ATM_parts.ToList();
+            var ans = await _ATM_parts.ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;

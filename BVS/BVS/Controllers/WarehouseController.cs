@@ -48,7 +48,7 @@ namespace BVS.Controllers
             foreach (var item in listbox)
             {
                 id = 0;
-                foreach (var part in partRepo.Select())
+                foreach (var part in await partRepo.Select())
                 {
                     if (part.Name == item)
                     {
