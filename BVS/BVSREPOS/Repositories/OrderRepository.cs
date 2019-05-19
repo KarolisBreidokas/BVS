@@ -26,12 +26,12 @@ namespace BVS.Data.Repositories
         {
             Random gen = new Random();
             DateTime start = DateTime.Now;
-            start.AddDays(gen.Next(7, 30));// KAS ČIA PER NESAMONĖ
+            DateTime arrival = start.AddDays(gen.Next(7, 30));
 
             var orderEntity = new Order
             {
                 Date = DateTime.Now,
-                ArivalDate = start,
+                ArivalDate = arrival,
                 AuthorId = orderDto.AuthorId,
                 Parts = orderDto.PartList.
                     Select(x => new OrderedPart()
@@ -48,7 +48,8 @@ namespace BVS.Data.Repositories
 
         public async Task<ICollection<Order>> Select()
         {
-            var ans = await _orders.ToListAsync();
+            var ans = await _orders.Include(x=>x.Parts).ThenInclude(x=>x.Part).ToListAsync();
+            await _orders.Include(x => x.Author).ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;

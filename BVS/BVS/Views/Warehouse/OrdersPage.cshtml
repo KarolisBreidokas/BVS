@@ -26,10 +26,10 @@
                         @*@item.Parts*@
                         @foreach (var part in @item.Parts)
                         {
-                            @part.Part.Name
+                            @part.Part.Name <br>
                         }
                     </td>
-                    <td>@item.Author</td>
+                    <td>@item.Author.Name @item.Author.Surname</td>
                     <td>@item.Date</td>
                     <td>@item.ArivalDate</td>
 
