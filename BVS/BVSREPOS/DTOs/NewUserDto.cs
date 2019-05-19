@@ -7,12 +7,12 @@ namespace BVS.Data.DTOs
 {
     public class NewUserDto
     {
-        public string Name;
-        public string Surname;
-        public string Username;
-        public string Password;
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
         [EmailAddress]
-        public string Email;
+        public string Email { get; set; }
 
         public User MapToUser(User user)
         {

@@ -59,5 +59,12 @@ namespace BVS.Controllers
             ViewBag.Error = @"<div>Wrong Username or Password<\div>";
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(NewUserDto user)
+        {
+            await _repository.createNewAccount(user);
+            return RedirectToAction("Login");
+        }
     }
 }
