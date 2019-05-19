@@ -28,41 +28,32 @@
         </thead>
 
         <tbody>
-            @foreach (var atm in Model)
+            @if (Model != null)
             {
-                <tr>
-                    <td>@atm.Address</td>
-                    <td>@atm.AditionalInfo </td>
-                    <td>@atm.State</td>
-                    <td>
-                        @if (atm.Online)
-                        {
-                            <p>Taip</p>
-                        }
-                        else
-                        {
-                            <p>Ne</p>
-                        }
-                    </td>
-                    <td><button class="btn btn-info" type="button" onclick="location.href='@Url.Action("UpdateATM", "ATM",  new { atmId = atm.Id} )'" )'">Atnaujinti</button></td>
-                    <td>
-                        <button class="btn btn-info" type="button" data-toggle="modal" data-target="#myModal">Šalinti</button>
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <p>Ar tikrai norite pašalinti bankomatą esantį @atm.Address</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" onclick="location.href='@Url.Action("RemoveATM", "ATM",  new { atmId = atm.Id} )'">Taip</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Ne</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                @foreach (var atm in Model)
+                {
+                    var id = atm.Id;
+                    var address = atm.Address;
+                    <tr>
+                        <td>@atm.Address</td>
+                        <td>@atm.AditionalInfo </td>
+                        <td>@atm.State</td>
+                        <td>
+                            @if (atm.Online)
+                            {
+                                <p>Taip</p>
+                            }
+                            else
+                            {
+                                <p>Ne</p>
+                            }
+                        </td>
+                        <td><button class="btn btn-info" type="button" onclick="location.href='@Url.Action("UpdateATM", "ATM", new { atmId = id })'" )'">Atnaujinti</button></td>
+                        <td>
+                            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("RemoveATM", "ATM", new { atmId = id})'">Šalinti</button>
+                        </td>
+                    </tr>
+                }
             }
 
         </tbody>

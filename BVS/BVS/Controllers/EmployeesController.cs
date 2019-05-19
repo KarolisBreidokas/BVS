@@ -30,10 +30,21 @@ namespace BVS.Controllers
         [HttpPost]
         public async Task<IActionResult> ViewEmployees(string Search)
         {
-            var workers = await repoWorker.search(Search);
-            var storageWorkers = await repoStorageWorker.search(Search);
-            AllEmployees employees = new AllEmployees(workers, storageWorkers);
-            return View(employees);
+            if (Search != null)
+            {
+                var workers = await repoWorker.search(Search);
+                var storageWorkers = await repoStorageWorker.search(Search);
+                AllEmployees employees = new AllEmployees(workers, storageWorkers);
+                return View(employees);
+            }
+            else
+            {
+                var workers = await repoWorker.getEmployees();
+                var storageWorkers = await repoStorageWorker.getStorageWorkers();
+                AllEmployees employees = new AllEmployees(workers, storageWorkers);
+                return View(employees);
+            }
+           
         }
     }
 }

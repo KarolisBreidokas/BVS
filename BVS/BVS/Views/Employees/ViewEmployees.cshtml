@@ -23,6 +23,7 @@
                 <th>Slaptažodis</th>
                 <th>E.paštas</th>
                 <th>Telefono nr.</th>
+                <th>Darbo pozicija</th>
                 <th>Atnaujinti</th>
                 <th>Ataskaitos</th>
                 <th>Šalinti</th>
@@ -30,34 +31,42 @@
         </thead>
 
         <tbody>
-            @foreach (BVS.Data.Models.Worker w in Model.Worker)
+            @if (Model.Worker != null)
             {
-                <tr>
-                    <td>@w.Name</td>
-                    <td>@w.Surname</td>
-                    <td>@w.Username</td>
-                    <td>@w.Password</td>
-                    <td>@w.Email</td>
-                    <td>@w.PhoneNo</td>
-                    <td><button class="btn btn-info" type="button">Atnaujinti</button></td>
-                    <td><button class="btn btn-info" type="button">Ataskaitos</button></td>
-                    <td><button class="btn btn-info" type="button">Šalinti</button></td>
-                </tr>
+                @foreach (BVS.Data.Models.Worker w in Model.Worker)
+                {
+                    <tr>
+                        <td>@w.Name</td>
+                        <td>@w.Surname</td>
+                        <td>@w.Username</td>
+                        <td>@w.Password</td>
+                        <td>@w.Email</td>
+                        <td>@w.PhoneNo</td>
+                        <td>Bankomatų prižiūrėtojas</td>
+                        <td><button class="btn btn-info" type="button">Atnaujinti</button></td>
+                        <td><button class="btn btn-info" type="button">Ataskaitos</button></td>
+                        <td><button class="btn btn-info" type="button">Šalinti</button></td>
+                    </tr>
+                }
             }
 
-            @foreach (BVS.Data.Models.StorageWorker s in Model.StorageWorker)
+            @if (Model.StorageWorker != null)
             {
-                <tr>
-                    <td>@s.Name</td>
-                    <td>@s.Surname</td>
-                    <td>@s.Username</td>
-                    <td>@s.Password</td>
-                    <td>@s.Email</td>
-                    <td>@s.PhoneNo</td>
-                    <td><button class="btn btn-info" type="button">Atnaujinti</button></td>
-                    <td><button class="btn btn-info" type="button">Ataskaitos</button></td>
-                    <td><button class="btn btn-info" type="button">Šalinti</button></td>
-                </tr>
+                @foreach (BVS.Data.Models.StorageWorker s in Model.StorageWorker)
+                {
+                    <tr>
+                        <td>@s.Name</td>
+                        <td>@s.Surname</td>
+                        <td>@s.Username</td>
+                        <td>@s.Password</td>
+                        <td>@s.Email</td>
+                        <td>@s.PhoneNo</td>
+                        <td>Sandėlininkas</td>
+                        <td><button class="btn btn-info" type="button">Atnaujinti</button></td>
+                        <td><button class="btn btn-info" type="button">Ataskaitos</button></td>
+                        <td><button class="btn btn-info" type="button">Šalinti</button></td>
+                    </tr>
+                }
             }
 
         </tbody>

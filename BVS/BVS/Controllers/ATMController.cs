@@ -17,12 +17,6 @@ namespace BVS.Controllers
         {
             this.repo = repo;
         }
-        /*
-         public ATMController()
-         {
-            this.repo = new StubAtmRepository();\\StubAtmRepository - menama repositorija, kuri grąžina menamas reikšmes
-         }
-         */
 
         public async Task<IActionResult> ViewATMs()
         {
@@ -80,8 +74,17 @@ namespace BVS.Controllers
         [HttpPost]
         public async Task<ActionResult> ViewATMs(string Search)
         {
-            var atm = await repo.search(Search);
-            return View(atm);
+            if (Search != null)
+            {
+                var atm = await repo.search(Search);
+                return View(atm);
+            }
+            else
+            {
+                var atm = await repo.getATMs();
+                return View(atm);
+            }
+            
         }
     }
 }
