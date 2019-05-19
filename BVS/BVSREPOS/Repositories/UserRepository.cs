@@ -54,7 +54,7 @@ namespace BVS.Data.Repositories
             return userEntity.Id;
         }
 
-        public async Task<int?> checkData(LoginDto details)
+        public async Task<User> checkData(LoginDto details)
         {
             var user = await _users.Where(x => x.Username == details.Username).FirstOrDefaultAsync();
             if (user is null)
@@ -63,7 +63,7 @@ namespace BVS.Data.Repositories
             }
 
             if (BCryptHelper.CheckPassword(details.Password, user.Password))
-                return user.Id;
+                return user;
             return null;
         }
     }

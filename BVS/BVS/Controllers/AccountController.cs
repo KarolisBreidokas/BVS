@@ -41,27 +41,27 @@ namespace BVS.Controllers
         public async Task<IActionResult> Login(LoginDto details)
         {
             //determen witch screen to display
-            var uid = await _repository.checkData(details);
-            if (uid.HasValue)
+            var user = await _repository.checkData(details);
+            if (user is null)
             {
-                var user = await _repository.getUserInfo(uid.Value);
-                HttpContext.Session.SetComplex("User", user);
-                if (user is Administrator)
-                {
-                    return RedirectToAction("AdministratorHomePage");
-                }
-                else if(user is StorageWorker)
-                {
-                    return RedirectToAction("OrdersPage","Warehouse");                  
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+
+                ViewBag.Error = @"Wrong Username or Password";
+                return View();
+            }
+            HttpContext.Session.SetComplex("User", user);
+            if (user is Administrator)
+            {
+                return RedirectToAction("AdministratorHomePage");
+            }
+            if(user is StorageWorker)
+            {
+                return RedirectToAction("OrdersPage","Warehouse");                  
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.Error = @"<div>Wrong Username or Password<\div>";
-            return View();
         }
 
         [HttpPost]
