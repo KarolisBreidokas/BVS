@@ -169,7 +169,7 @@ namespace BVS.Controllers
             {
                 var listOfATMs = atms.ToList();
                 int atm = rand.Next(listOfATMs.Count);
-                await repo.updateATMState(listOfATMs[atm].Id, Data.Models.ATM_State.ReikiaAptarnavimo);
+                await repo.updateATMState(listOfATMs[atm].Id, Data.Models.ATM_State.Veikia);
 
 
                 var noProblems = new NewInformationalMessageDto()

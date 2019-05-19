@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BVS.Configuration;
 using BVS.Data.DTOs;
+using BVS.Data.Models;
 using BVS.Data.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,7 +38,7 @@ namespace BVS.Controllers
             { 
                 Date = DateTime.Now,
                 Description = Problem,
-                AuthorId = 1            //idet userio id
+                AuthorId = HttpContext.Session.GetComplex<User>("User").Id
             };
             await repoReport.Add(report);
             await repoJob.CreateJob(new NewJobDto() { Description = Problem, State = Data.Models.JobState.Nepriskirtas });
