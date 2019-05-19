@@ -29,7 +29,7 @@ namespace BVS
         {
             services.AddDbContext<BVSDBContext>(
                 opt => opt.UseSqlServer(Configuration["ConnectionStrings:default"],b=>b.MigrationsAssembly("BVS")));
-            services.InjectRepositories();
+            services.InjectDepenencies();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
