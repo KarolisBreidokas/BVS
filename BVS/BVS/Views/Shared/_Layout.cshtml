@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using BVS.Configuration;
+<!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -33,10 +36,30 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li><a asp-area="" asp-controller="ATM" asp-action="ViewATMs">Bankomatai</a></li>
-                    <li><a asp-area="" asp-controller="Employees" asp-action="ViewEmployees">Darbuotojai</a></li>
-                    <li><a asp-area="" asp-controller="Warehouse" asp-action="PartsList">Sandėlys</a></li>
-                    <li><a asp-area="" asp-controller="Warehouse" asp-action="OrdersPage">Užsakymai</a></li>
+                    @{
+                        var user = HttpContextAccessor.HttpContext.Session.GetComplex<BVS.Data.Models.User>("User");
+                        if (user is BVS.Data.Models.Administrator)
+                        {
+                            <li><a asp-area="" asp-controller="ATM" asp-action="ViewATMs">Bankomatai</a></li>
+                            <li><a asp-area="" asp-controller="Employees" asp-action="ViewEmployees">Darbuotojai</a></li>
+                        }else 
+                        if (user is BVS.Data.Models.StorageWorker)
+                        {
+                            <li><a asp-area="" asp-controller="Warehouse" asp-action="OrdersPage">Užsakymai</a></li>
+                        } else
+                        if (user is BVS.Data.Models.Worker)
+                        {
+                            <li><a asp-area="" asp-controller="Job" asp-action="JobList">Darbai</a></li>
+                        }else
+                        if (user is BVS.Data.Models.User)
+                        {
+                            <li><a asp-area="" asp-controller="Map" asp-action="Index">Žemėlapis</a></li>
+                            <li><a asp-area="" asp-controller="Subscription" asp-action="SubscriptionView">Prenumeratos</a></li>
+                        }
+                    }
+                    <li class="pull-right"><a asp-area=""  asp-controller="Account" asp-action="Login">Prisijungimas</a></li>
+
+
                 </ul>
             </div>
         </div>
@@ -76,3 +99,5 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+

@@ -75,10 +75,62 @@ namespace BVS.Data
                 {
                     Id = -2,
                     Name = "Karolis",
-                    Surname = "Stoncius",
+                    Surname = "Stončius",
                     Email = "karolis.stoncius@ktu.edu",
                     Username = "Storage",
+                    Password = "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe",
+                    PhoneNo = "861514445"
+                }
+            );
+            modelBuilder.Entity<Worker>().HasData(
+                new Worker()
+                {
+                    Id = -3,
+                    Name = "Tadas",
+                    Surname = "Kalvaitis",
+                    Email = "Tadas.k31@gmail.com",
+                    Username = "Worker",
+                    Password = "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe",
+                    PhoneNo = "862546645"
+                }
+            );
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    Id = -4,
+                    Name = "Artūras",
+                    Surname = "Paulius",
+                    Email = "ltkarolissto@gmail.com",
+                    Username = "User",
                     Password = "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe"
+                }
+            );
+            modelBuilder.Entity<ATM>().HasData(
+                new ATM()
+                {
+                    Id = -1,
+                    Address = "Liepų g. 21",
+                    AditionalInfo = "Šalia Rimi",
+                    State = ATM_State.Veikia,
+                    Online = true
+                }
+            );
+            modelBuilder.Entity<ATM>().HasData(
+                new ATM()
+                {
+                    Id = -2,
+                    Address = "Laisvės al. 5",
+                    AditionalInfo = "",
+                    State = ATM_State.Neveikia,
+                    Online = false
+                }
+            );
+            modelBuilder.Entity<Subscription>().HasData(
+                new Subscription()
+                {
+                    UserId = -4,
+                    ATMId = -1
+
                 }
             );
             modelBuilder.Entity<OrderedPart>().HasData(

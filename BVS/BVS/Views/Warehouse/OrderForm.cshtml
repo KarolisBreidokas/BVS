@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm("OrderForm", "Warehouse", FormMethod.Post))
 {
-    <select name="listbox" id="listbox" multiple>
+    <select name="listbox" id="listbox" required="" multiple>
         @foreach (var item in Model)
         {
             <option value="@item.Name">
@@ -16,5 +16,6 @@
         }
 
     </select>
-    <input type="submit">
+    <br />
+    <button class="btn btn-info" type="submit">Užsakyti</button>
 }
