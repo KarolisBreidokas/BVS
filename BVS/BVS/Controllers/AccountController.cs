@@ -55,7 +55,7 @@ namespace BVS.Controllers
             }
             if(user is StorageWorker)
             {
-                return RedirectToAction("OrdersPage","Warehouse");                  
+                return RedirectToAction("WarehousePage", "Warehouse");
             }
             else
             {

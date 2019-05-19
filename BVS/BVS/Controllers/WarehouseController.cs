@@ -28,6 +28,12 @@ namespace BVS.Controllers
             return View();
         }
 
+        public IActionResult WarehousePage()
+        {
+            return View();
+        }
+
+
         public async Task<IActionResult> OrdersPage()
         {
             var orders = await orderRepo.Select();
