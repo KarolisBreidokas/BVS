@@ -45,10 +45,10 @@ namespace BVS.Data
                 }
             );
             modelBuilder.Entity<ATM_Part>().HasData(
-                //Insert ATM_Part Here
+            //Insert ATM_Part Here
             );
             modelBuilder.Entity<Cartridge>().HasData(
-                //Insert Cartridge Here
+            //Insert Cartridge Here
             );
         }
 
@@ -125,6 +125,7 @@ namespace BVS.Data
                 .WithMany()
                 .HasForeignKey(x => x.UserId);
             modelBuilder.Entity<Worker>();
+            Seed(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
     }
