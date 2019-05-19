@@ -49,9 +49,16 @@ namespace BVS.Data.Repositories
             return jobEntity.Id;
         }
 
+        private IQueryable<Job> IncldueDependencies(DbSet<Job> jobs)
+        {
+            return jobs.Include(x=>x.AssignedWorker)
+                        .Include(x=>x.Reason)
+                        .ThenInclude(x=>x.Autor)
+        }
+
         public async Task<ICollection<Job>> SelectJobs()
         {
-            var ans = await _jobs.ToListAsync();
+            var ans = await IncldueDependencies(_jobs).ToListAsync();
             if (ans is null)
                 throw new NotImplementedException();
             return ans;
