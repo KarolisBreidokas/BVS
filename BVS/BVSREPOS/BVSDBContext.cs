@@ -31,8 +31,7 @@ namespace BVS.Data
         {
         }
 
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        private void Seed(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Administrator>().HasData(
                 new Administrator()
@@ -45,6 +44,17 @@ namespace BVS.Data
                     Password = "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe"
                 }
             );
+            modelBuilder.Entity<ATM_Part>().HasData(
+                //Insert ATM_Part Here
+            );
+            modelBuilder.Entity<Cartridge>().HasData(
+                //Insert Cartridge Here
+            );
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Administrator>();
             modelBuilder.Entity<ATM>()
                 .HasMany(x => x.Transportations)
                 .WithOne(x => x.Transported)
