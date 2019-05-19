@@ -53,6 +53,14 @@ namespace BVS.Data
                     Description = "Description of patr1"
                 }
             );
+            modelBuilder.Entity<ATM_Part>().HasData(
+                new ATM_Part()
+                {
+                    Id = -3,
+                    Name = "Part2",
+                    Description = "Description of patr2"
+                }
+            );
             modelBuilder.Entity<Cartridge>().HasData(
                 new Cartridge()
                 {
@@ -60,6 +68,42 @@ namespace BVS.Data
                     Name = "Cartridge1",
                     Description = "Description of cartridge1",
                     Nominal = 50
+                }
+            );
+            modelBuilder.Entity<StorageWorker>().HasData(
+                new StorageWorker()
+                {
+                    Id = -2,
+                    Name = "Karolis",
+                    Surname = "Stoncius",
+                    Email = "karolis.stoncius@ktu.edu",
+                    Username = "Storage",
+                    Password = "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe"
+                }
+            );
+            modelBuilder.Entity<OrderedPart>().HasData(
+                new OrderedPart()
+                {
+                    Price = 30,
+                    PartId = -1,
+                    OrderId = -1
+                }
+            );
+            modelBuilder.Entity<OrderedPart>().HasData(
+                new OrderedPart()
+                {
+                    Price = 40,
+                    PartId = -2,
+                    OrderId = -1
+                }
+            );
+            modelBuilder.Entity<Order>().HasData(
+                new Order()
+                {
+                    Id = -1,
+                    Date = DateTime.Now,
+                    AuthorId = -2,
+                    ArivalDate = DateTime.Now.AddDays(8)                  
                 }
             );
         }

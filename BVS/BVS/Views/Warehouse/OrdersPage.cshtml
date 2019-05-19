@@ -1,4 +1,4 @@
-﻿
+﻿@model ICollection<BVS.Data.Models.Order>
 @{
     ViewData["Title"] = "OrdersPage";
 }
@@ -7,33 +7,37 @@
 
 
 <br><br>
-    <div class="container">
-        <table class="table">
-            <thead>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Dalys</th>
+                <th>Užsakytojas</th>
+                <th>Užsakymo data</th>
+                <th>Atvykimo data</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>Dalys</th>
-                    <th>Užsakytojas</th>
-                    <th>Kaina</th>
-                    <th>Užsakymo data</th>
-                    <th>Atvykimo data</th>
+                    <td>
+                        @*@item.Parts*@
+                        @foreach (var part in @item.Parts)
+                        {
+                            @part.Part.Name
+                        }
+                    </td>
+                    <td>@item.Author</td>
+                    <td>@item.Date</td>
+                    <td>@item.ArivalDate</td>
+
                 </tr>
-            </thead>
+            }
 
-            <tbody>
-                @for (int i = 0; i < 10; i++)
-                {
-                    <tr>
-                        <td>Mygtukas, apsauga </td>
-                        <td>Pranas Pranauskas</td>
-                        <td>50 Eu</td>
-                        <td>2019-05-16</td>
-                        <td>2019-05-22</td>
+        </tbody>
+    </table>
+    <button class="btn btn-info pull-right" type="button" onclick="location.href='@Url.Action("OrderForm", "Warehouse")'">Pridėti užsakymą</button>
 
-                    </tr>
-                }
-
-            </tbody>
-        </table>
-        <button class="btn btn-info pull-right" type="button" onclick="location.href='@Url.Action("OrderForm", "Warehouse")'">Pridėti užsakymą</button>
-
-    </div>
+</div>

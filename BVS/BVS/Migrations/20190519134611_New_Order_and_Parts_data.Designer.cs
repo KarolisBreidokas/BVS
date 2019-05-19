@@ -4,14 +4,16 @@ using BVS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BVS.Migrations
 {
     [DbContext(typeof(BVSDBContext))]
-    partial class BVSDBContextModelSnapshot : ModelSnapshot
+    [Migration("20190519134611_New_Order_and_Parts_data")]
+    partial class New_Order_and_Parts_data
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

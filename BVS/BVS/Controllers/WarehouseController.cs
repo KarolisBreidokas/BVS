@@ -17,8 +17,9 @@ namespace BVS.Controllers
 
         private ICollection<OrderedPartDto> orderedParts;
 
-        public WarehouseController(IPartRepository partRepo)
+        public WarehouseController(IOrderRepository orderRepo, IPartRepository partRepo)
         {
+            this.orderRepo = orderRepo;
             this.partRepo = partRepo;
         }
 
@@ -34,9 +35,9 @@ namespace BVS.Controllers
         }
 
 
-        public IActionResult OrderForm()
+        public async Task<IActionResult> OrderForm()
         {
-            var parts = partRepo.Select();
+            var parts = await partRepo.Select();
             return View(parts);
         }
 
@@ -45,10 +46,11 @@ namespace BVS.Controllers
         {
             int id = 0;
             List<int> ids = new List<int>();
+            var parts = await partRepo.Select();
             foreach (var item in listbox)
             {
                 id = 0;
-                foreach (var part in await partRepo.Select())
+                foreach (var part in parts)
                 {
                     if (part.Name == item)
                     {

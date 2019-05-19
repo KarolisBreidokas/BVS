@@ -21,6 +21,7 @@ namespace BVS.Configuration
             collection.AddScoped<IMessageRepository, MessageRepository>();
             collection.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             collection.AddScoped<IPartRepository, PartRepository>();
+            collection.AddScoped<IOrderRepository, OrderRepository>();
             return collection;
         }
     }

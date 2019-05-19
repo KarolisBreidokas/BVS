@@ -8,38 +8,13 @@
 @using (Html.BeginForm("OrderForm", "Warehouse", FormMethod.Post))
 {
     <select name="listbox" id="listbox" multiple>
-        @*@foreach (var item in Model)
-            {
-                <option value="@item.Name">
-                    @item.Name
-                </option>
-            }*@
-        <option value="Bla">
-            Bla
-        </option>
-        <option value="Bla2">
-            Bla2
-        </option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.Name">
+                @item.Name
+            </option>
+        }
+
     </select>
     <input type="submit">
 }
-
-@*@using (Html.BeginForm("OrderForm", "Order", FormMethod.Post))
-    {
-        <p>Dalis: </p>
-        @foreach (var part in Model)
-        {
-            <option value="">Volvo</option>
-        }
-
-        @Html.DropDownList("Dalis", new SelectList(Enum.GetValues(typeof(m))))
-
-        <select>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
-
-        <button class="btn btn-info" type="submit">Užsakyti</button>
-    }*@
-
