@@ -45,17 +45,23 @@ namespace BVS.Data
                     Password = "$2a$10$wXKjdScgnoSGL6jFFDxSD.pngMcqRZZaPyRpUYFX7kdV/964qMMGe"
                 }
             );
-            //modelBuilder.Entity<ATM_Part>().HasData(
-
-            //    //Insert ATM_Part Here
-            //);
-            //modelBuilder.Entity<Cartridge>().HasData(
-            //    //Insert Cartridge Here
-            ////Insert ATM_Part Here
-            //);
-            //modelBuilder.Entity<Cartridge>().HasData(
-            ////Insert Cartridge Here
-            //);
+            modelBuilder.Entity<ATM_Part>().HasData(
+                new ATM_Part()
+                {
+                    Id = -1,
+                    Name = "Part1",
+                    Description = "Description of patr1"
+                }
+            );
+            modelBuilder.Entity<Cartridge>().HasData(
+                new Cartridge()
+                {
+                    Id = -2,
+                    Name = "Cartridge1",
+                    Description = "Description of cartridge1",
+                    Nominal = 50
+                }
+            );
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
