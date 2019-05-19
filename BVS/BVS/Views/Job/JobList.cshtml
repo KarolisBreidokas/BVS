@@ -12,7 +12,7 @@
                 <tr>
                     <th>Aprašymas</th>
                     <th>Būsena</th>
-                    <th>Darbą pasirinkusio darbuotojo ID</th>
+                    <th>Darbą pasirinkęs darbuotojas</th>
                     <th>Pasirinkti</th>
                 </tr>
             </thead>
@@ -29,7 +29,8 @@
                             <td>
                                 @if (j.State == BVS.Data.Models.JobState.Atliekamas || j.State == BVS.Data.Models.JobState.Atliktas)
                                 {
-                                    @j.WorkerId
+                                    @j.AssignedWorker.Name <br />
+                                    @j.AssignedWorker.Surname
                                 }
                                 else
                                 {
