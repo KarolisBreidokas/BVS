@@ -30,6 +30,7 @@ namespace BVS.Data.Repositories
                 if (ans is null)
                     throw new NotImplementedException();
 
+                ans.State = JobState.Atliekamas;
                 ans.AssignedWorker = worker;
             }
 
@@ -40,7 +41,8 @@ namespace BVS.Data.Repositories
         {
             var jobEntity = new Job
             {
-                Description = message.Description
+                Description = message.Description,
+                State = message.State
             };
             _jobs.Add(jobEntity);
             await _context.SaveChangesAsync();

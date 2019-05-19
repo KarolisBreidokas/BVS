@@ -36,10 +36,10 @@ namespace BVS.Controllers
             { 
                 Date = DateTime.Now,
                 Description = Problem,
-                AuthorId = 4            //idet userio id
+                AuthorId = 1            //idet userio id
             };
             await repoReport.Add(report);
-            await repoJob.CreateJob(new NewJobDto() { Description = Problem });
+            await repoJob.CreateJob(new NewJobDto() { Description = Problem, State = Data.Models.JobState.Nepriskirtas });
 
             return Redirect("~/Home/Index");
         }

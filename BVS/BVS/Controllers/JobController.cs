@@ -26,7 +26,7 @@ namespace BVS.Controllers
         [HttpPost]
         public async Task<IActionResult> JobList(ICollection<int> selectedJobsId)
         {
-            await repo.AssignWorker(5/*worker ID*/, selectedJobsId);
+            await repo.AssignWorker(1/*worker ID*/, selectedJobsId);
             return View();        //Viewas kaip suprantu kaskur kitur numeta rodo kelia turbut
         }
     }

@@ -12,36 +12,38 @@
                 <tr>
                     <th>Aprašymas</th>
                     <th>Būsena</th>
-                    <th>Darbą pasirinkes darbuotojas</th>
+                    <th>Darbą pasirinkusio darbuotojo ID</th>
                     <th>Pasirinkti</th>
                 </tr>
             </thead>
 
             <tbody>
 
-
-                @foreach(var j in Model)
+                @if (Model != null)
                 {
-                    <tr>
-                        <td>@j.Description</td>
-                        <td>@j.State </td>
-                        <td>
-                            @if(j.State == BVS.Data.Models.JobState.Atliekamas || j.State == BVS.Data.Models.JobState.Atliktas)
-                            {
-                                @j.AssignedWorker.Name @j.AssignedWorker.Surname
-                            }
-                            else
-                            {
-                                <p>-</p>
-                            }
-                        </td>
-                        <td>
-                            @if (j.State == BVS.Data.Models.JobState.Neatliktas || j.State == BVS.Data.Models.JobState.Nepriskirtas)
-                            {
-                                <input type="checkbox" name="selectedJobsId" value="@j.Id">
-                            }
-                        </td>
-                    </tr>
+                    @foreach (var j in Model)
+                    {
+                        <tr>
+                            <td>@j.Description</td>
+                            <td>@j.State </td>
+                            <td>
+                                @if (j.State == BVS.Data.Models.JobState.Atliekamas || j.State == BVS.Data.Models.JobState.Atliktas)
+                                {
+                                    @j.WorkerId
+                                }
+                                else
+                                {
+                                    <p>-</p>
+                                }
+                            </td>
+                            <td>
+                                @if (j.State == BVS.Data.Models.JobState.Neatliktas || j.State == BVS.Data.Models.JobState.Nepriskirtas)
+                                {
+                                    <input type="checkbox" name="selectedJobsId" value="@j.Id">
+                                }
+                            </td>
+                        </tr>
+                    }
                 }
 
             </tbody>
