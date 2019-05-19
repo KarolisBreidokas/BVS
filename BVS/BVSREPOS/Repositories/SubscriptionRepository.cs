@@ -29,6 +29,7 @@ namespace BVS.Data.Repositories
                 UserId = userId,
                 ATMId = atmId
             };
+            _subscriptions.Add(subscriptionEntity);
             await _context.SaveChangesAsync();
         }
 
