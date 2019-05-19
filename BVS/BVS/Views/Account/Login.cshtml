@@ -4,8 +4,9 @@
 }
 
 <h2>Prisijungimas</h2>
+@ViewBag.Error
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@using (Html.BeginForm(FormMethod.Post))
 {
     @Html.TextBoxFor(x=>x.Username,new {@class= "center-block", @style = "resize: none", @required = "", @placeholder = "Prisijungimo vardas" })
     <br>

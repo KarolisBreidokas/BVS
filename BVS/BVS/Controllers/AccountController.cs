@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BVS.Configuration;
 using BVS.Data.DTOs;
 using BVS.Data.Models;
 using BVS.Data.Repositories.Interfaces;
@@ -44,15 +45,18 @@ namespace BVS.Controllers
             if (uid.HasValue)
             {
                 var user = await _repository.getUserInfo(uid.Value);
+                HttpContext.Session.SetComplex("User", user);
                 if (user is Administrator)
                 {
-                    return View("AdministratorHomePage");
+                    return RedirectToAction("AdministratorHomePage");
                 }
                 else
                 {
                     return RedirectToAction("Index", "Home");
                 }
             }
+
+            ViewBag.Error = @"<div>Wrong Username or Password<\div>";
             return View();
         }
     }
