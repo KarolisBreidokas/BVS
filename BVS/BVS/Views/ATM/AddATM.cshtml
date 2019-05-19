@@ -6,7 +6,7 @@
 @using (Html.BeginForm("AddATM", "ATM", FormMethod.Post))
 {
     <p>Adresas: </p>
-    <textarea class="form-control" name="Address" rows="1" placeholder="Gatvė pastato nr. miestas" style="resize: none" required=""></textarea> <br>
+    <input type="text" class="form-control" name="Address" rows="1" placeholder="Gatvė pastato nr. miestas" style="resize: none" pattern="[A-Za-z]* [0-9]* [A-Za-z]*" required=""> <br>
     <p>Papildoma informacija: </p>
     <textarea class="form-control" name="AdditionalInfo" rows="5" placeholder="Bankomato modelis, tikslesnė jo vieta pastate ir t.t" style="resize: none" required=""></textarea>
     <br>
