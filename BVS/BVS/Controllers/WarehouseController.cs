@@ -13,9 +13,7 @@ namespace BVS.Controllers
     {
         private readonly IPartRepository partRepo;
         private readonly IOrderRepository orderRepo;
-        private readonly NewOrderDto newOrderDTO;
-
-        private ICollection<OrderedPartDto> orderedParts;
+        
 
         public WarehouseController(IOrderRepository orderRepo, IPartRepository partRepo)
         {
@@ -44,6 +42,8 @@ namespace BVS.Controllers
         [HttpPost]
         public async Task<ActionResult> OrderForm(List<string> listbox)
         {
+            NewOrderDto newOrderDTO = new NewOrderDto();
+            ICollection<OrderedPartDto> list = new List<OrderedPartDto>();
             int id = 0;
             List<int> ids = new List<int>();
             var parts = await partRepo.Select();
@@ -61,6 +61,7 @@ namespace BVS.Controllers
                 ids.Add(id);
             }
 
+            
             foreach (var _id in ids)
             {
                 OrderedPartDto newOrder = new OrderedPartDto()
@@ -68,10 +69,10 @@ namespace BVS.Controllers
                     PartId = _id,
                     Price = 30
                 };
-                newOrderDTO.PartList.Add(newOrder);
+                list.Add(newOrder);              
             }
-
-            //newOrderDTO.AuthorId = session.Id;
+            newOrderDTO.PartList = list;
+            newOrderDTO.AuthorId = -2;
             newOrderDTO.Date = DateTime.Now;
             await orderRepo.AddOrder(newOrderDTO);
 
