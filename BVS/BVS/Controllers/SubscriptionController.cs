@@ -33,7 +33,6 @@ namespace BVS.Controllers
                 HttpContext.Session.Clear();
                 return RedirectToAction("Login", "Account");
             }
-
             await repo.Create(user.Id, id);
             return RedirectToAction("Index", "Map");
             throw new NotImplementedException();
