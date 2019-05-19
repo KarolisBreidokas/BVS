@@ -8,6 +8,5 @@ bin/
 obj/
 /BVS/BVSREPOS/Migrations
 Generated/
-/BVS/BVS/Migrations
 appsettings.json
 appsettings.Development.json
