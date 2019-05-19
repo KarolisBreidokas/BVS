@@ -46,23 +46,15 @@ namespace BVS.Data
                 }
             );
             //modelBuilder.Entity<ATM_Part>().HasData(
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
             //    //Insert ATM_Part Here
             //);
             //modelBuilder.Entity<Cartridge>().HasData(
             //    //Insert Cartridge Here
-=======
->>>>>>> c2fe60aca045947710abec150fa337278b4e21f7
             ////Insert ATM_Part Here
             //);
             //modelBuilder.Entity<Cartridge>().HasData(
             ////Insert Cartridge Here
-<<<<<<< HEAD
-=======
->>>>>>> b864cb3080c4ab6bd805595b248b167c0df76b9a
->>>>>>> c2fe60aca045947710abec150fa337278b4e21f7
             //);
         }
 
