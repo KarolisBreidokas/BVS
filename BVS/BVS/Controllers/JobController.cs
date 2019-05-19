@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BVS.Configuration;
+using BVS.Data.Models;
 using BVS.Data.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +28,7 @@ namespace BVS.Controllers
         [HttpPost]
         public async Task<IActionResult> JobList(ICollection<int> selectedJobsId)
         {
-            await repo.AssignWorker(1/*worker ID*/, selectedJobsId);
+            await repo.AssignWorker(HttpContext.Session.GetComplex<User>("User").Id, selectedJobsId);
             return View();        //Viewas kaip suprantu kaskur kitur numeta rodo kelia turbut
         }
     }
