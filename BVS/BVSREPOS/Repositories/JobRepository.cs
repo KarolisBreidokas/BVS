@@ -51,9 +51,9 @@ namespace BVS.Data.Repositories
 
         private IQueryable<Job> IncldueDependencies(DbSet<Job> jobs)
         {
-            return jobs.Include(x=>x.AssignedWorker)
-                        .Include(x=>x.Reason)
-                        .ThenInclude(x=>x.Autor)
+            return jobs.Include(x => x.AssignedWorker)
+                .Include(x => x.Reason)
+                .ThenInclude(x => x.Autor);
         }
 
         public async Task<ICollection<Job>> SelectJobs()
