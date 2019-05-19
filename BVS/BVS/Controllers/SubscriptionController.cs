@@ -24,5 +24,20 @@ namespace BVS.Controllers
             var subs = await repo.GetByUser(HttpContext.Session.GetComplex<User>("User").Id);
             return View(subs);
         }
+
+        public async Task<IActionResult> Subscribe(int id)
+        {
+            var user = HttpContext.Session.GetComplex<User>("User");
+            if (user is null)
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login", "Account");
+            }
+
+            await repo.Create(user.Id, id);
+            return RedirectToAction("Index", "Map");
+            throw new NotImplementedException();
+        }
+
     }
 }

@@ -1,7 +1,29 @@
-﻿@model ICollection<BVS.Data.DTOs.MapDataDto>
+﻿
+@model BVS.Data.DTOs.MapViewDto
 @{
     ViewData["Title"] = "žemėlapis";
 }
 
-<h2>Index</h2>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin=""></script>
 
+<h2>Index</h2>
+<div id="mymap" style="height:500px"></div>
+<script type="text/javascript">
+    var map = L.map('mymap').setView([@Model.CenterPoint.Latitude, @Model.CenterPoint.Longitude], 10);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    @foreach (var t in Model.Data)
+    { 
+    <text>
+    L.marker([@t.Location.Latitude,@t.Location.Longitude])
+        .addTo(map)
+        .bindPopup('@t.Atm.Address<br>@t.Atm.AditionalInfo @Html.ActionLink("Subscribe","Subscribe","Subscription") ');
+    </text>
+    }
+</script>

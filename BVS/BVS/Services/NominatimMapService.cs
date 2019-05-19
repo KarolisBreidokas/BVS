@@ -16,7 +16,11 @@ namespace BVS.Services
             var t = new ForwardGeocoder();
             var ans = atms.AsParallel().Select(async x =>
             {
-                var request = new ForwardGeocodeRequest() {queryString = x.Address};
+                var request = new ForwardGeocodeRequest()
+                {
+                    queryString = x.Address,
+                    LimitResults = 1
+                };
                 var response = await t.Geocode(request);
                 MapLocation location = null;
                 if (response.Length > 0)
