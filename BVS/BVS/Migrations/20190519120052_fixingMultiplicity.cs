@@ -46,9 +46,6 @@ namespace BVS.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_atmMessages_ATM_Parts_PartId1",
-                table: "atmMessages");
 
             migrationBuilder.DropIndex(
                 name: "IX_atmMessages_PartId",
