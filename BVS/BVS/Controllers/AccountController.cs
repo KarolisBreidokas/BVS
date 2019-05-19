@@ -50,6 +50,10 @@ namespace BVS.Controllers
                 {
                     return RedirectToAction("AdministratorHomePage");
                 }
+                else if(user is StorageWorker)
+                {
+                    return RedirectToAction("WarehousePage");                  
+                }
                 else
                 {
                     return RedirectToAction("Index", "Home");
