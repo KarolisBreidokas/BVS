@@ -14,11 +14,12 @@ namespace BVS.Services
         public async Task<ICollection<MapDataDto>> GetAtmLocations(ICollection<ATM> atms)
         {
             var t = new ForwardGeocoder();
-            var ans = atms.AsParallel().Select(async x =>
+            var atmData = new List<MapDataDto>(atms.Count);
+            foreach (var atm in atms)
             {
                 var request = new ForwardGeocodeRequest()
                 {
-                    queryString = x.Address,
+                    queryString = atm.Address,
                     LimitResults = 1
                 };
                 var response = await t.Geocode(request);
@@ -32,13 +33,15 @@ namespace BVS.Services
                     };
                 }
 
-                return new MapDataDto
+                var tmp= new MapDataDto
                 {
-                    Atm = x,
+                    Atm = atm,
                     Location = location
                 };
-            });
-            return await Task.WhenAll(ans);
+                atmData.Add(tmp);
+            }
+
+            return atmData;
         }
     }
 }
