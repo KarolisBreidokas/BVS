@@ -12,10 +12,12 @@ namespace BVS.Controllers
     public class ATMController : Controller
     {
         private readonly IATM_Repository repo;
+        private readonly IJobRepository repoJob;
 
-        public ATMController(IATM_Repository repo)
+        public ATMController(IATM_Repository repo, IJobRepository repoJob)
         {
             this.repo = repo;
+            this.repoJob = repoJob;
         }
 
         public async Task<IActionResult> ViewATMs()
@@ -39,8 +41,7 @@ namespace BVS.Controllers
         public async Task<ActionResult> RemoveATM(int atmId)
         {
             await repo.delete(atmId);
-            var atms = await repo.getATMs();
-            return View("ViewATMs", atms);
+            return Redirect("ViewATMs");
         }
 
         [HttpPost]
@@ -85,6 +86,54 @@ namespace BVS.Controllers
                 return View(atm);
             }
             
+        }
+
+
+
+
+        public async Task<ActionResult> MessageATM()
+        {
+            Random rand = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var atms = await repo.getATMs();
+            int mes = rand.Next(1, 4);
+            string message = "";
+            if (mes == 1)
+            {
+                message = "Detalės gedimas " + new string(Enumerable.Repeat(chars, 10).Select(s => s[rand.Next(s.Length)]).ToArray());
+                var listOfATMs = atms.ToList();
+                int atm = rand.Next(listOfATMs.Count);
+                await repo.updateATMState(listOfATMs[atm].Id, Data.Models.ATM_State.Neveikia);
+
+                //issaugo zinute i db
+
+                await repoJob.CreateJob(new NewJobDto() { Description = message, State = Data.Models.JobState.Nepriskirtas });
+
+
+                //informuoti vartotojus kad bankomatas neveikia
+            }
+            else if (mes == 2)
+            {
+                message = "Baiginėjasi kasetė " + new string(Enumerable.Repeat(chars, 10).Select(s => s[rand.Next(s.Length)]).ToArray());
+                var listOfATMs = atms.ToList();
+                int atm = rand.Next(listOfATMs.Count);
+                await repo.updateATMState(listOfATMs[atm].Id, Data.Models.ATM_State.ReikiaAptarnavimo);
+
+                //issaugo zinute i db
+
+                await repoJob.CreateJob(new NewJobDto() { Description = message, State = Data.Models.JobState.Nepriskirtas });
+
+                //informuoti vartotojus kad bankomate liko nedaug pinigu
+            }
+            else
+            {
+                var listOfATMs = atms.ToList();
+                int atm = rand.Next(listOfATMs.Count);
+                await repo.updateATMState(listOfATMs[atm].Id, Data.Models.ATM_State.Veikia);
+            }
+
+
+            return Redirect("ViewATMs");
         }
     }
 }

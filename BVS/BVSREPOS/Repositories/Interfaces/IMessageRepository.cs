@@ -4,6 +4,7 @@
 
 using BVS.Data.DTOs;
 using BVS.Data.Models;
+using System.Threading.Tasks;
 
 namespace BVS.Data.Repositories.Interfaces
 {
@@ -14,7 +15,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param Message
 		 * * @return naujos žinutės id
 		 */
-		int SaveMessage(NewMessageDto messageDto);  //REIKIA
+		Task<int> SaveMessage(NewMessageDto messageDto);  //REIKIA
 
         /**
 		 * * Ištraukia žinut? iš rep. //pagal ką 

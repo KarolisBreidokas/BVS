@@ -98,7 +98,7 @@ namespace BVS.Data.Repositories
             if (ans is null)
                 throw new NotImplementedException();
            _ATMs.Attach(ans);
-            if (state.Equals("InTransit"))
+            if (state == ATM_State.Pervežamas)
             {
                 ans.State = state;
                 ans.Online = false;
