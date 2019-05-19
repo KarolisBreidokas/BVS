@@ -10,7 +10,6 @@ namespace BVS.Data.DTOs
     {
         public int AtmId;
         public DateTime Date;
-
         public abstract ATM_Message fillMessage();
     }
 }

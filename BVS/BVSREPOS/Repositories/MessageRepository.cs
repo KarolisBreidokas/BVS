@@ -14,20 +14,25 @@ namespace BVS.Data.Repositories
     public class MessageRepository:IMessageRepository
     {
         private readonly BVSDBContext _context;
+        private readonly DbSet<ATM_Message> _messages;
 
         public MessageRepository(BVSDBContext context)
         {
             _context = context;
+            _messages = _context.atmMessages;
         }
 
-        public ATM_Message GetMessage()
+        public ATM_Message GetMessage() // pagal ką išrinkti
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> SaveMessage(NewMessageDto messageDto)
+        public async Task<int> SaveMessage(NewMessageDto messageDto)
         {
-            throw new NotImplementedException();
+            var ans = messageDto.fillMessage();
+            _messages.Add(ans);
+            await _context.SaveChangesAsync();
+            return ans.Id;
         }
     }
 }
