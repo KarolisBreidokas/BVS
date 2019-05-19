@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using BVS.Data.Repositories.Interfaces;
 
 using BVS.Data.DTOs;
+using BVS.Configuration;
+using BVS.Data.Models;
 
 namespace BVS.Controllers
 {
@@ -72,7 +74,7 @@ namespace BVS.Controllers
                 list.Add(newOrder);              
             }
             newOrderDTO.PartList = list;
-            newOrderDTO.AuthorId = -2;
+            newOrderDTO.AuthorId = HttpContext.Session.GetComplex<User>("User").Id;
             newOrderDTO.Date = DateTime.Now;
             await orderRepo.AddOrder(newOrderDTO);
 

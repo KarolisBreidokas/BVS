@@ -22,9 +22,12 @@ namespace BVS.Data.Repositories
             _messages = _context.atmMessages;
         }
 
-        public ATM_Message GetMessage() // pagal ką išrinkti
+        public async Task<ATM_Message> GetMessage(int id) // pagal ką išrinkti
         {
-            throw new NotImplementedException();
+            var ans = await _messages.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if(ans is null)
+                throw new NotImplementedException();
+            return ans;
         }
 
         public async Task<int> SaveMessage(NewMessageDto messageDto)

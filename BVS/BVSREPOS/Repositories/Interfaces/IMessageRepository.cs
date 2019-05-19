@@ -22,7 +22,7 @@ namespace BVS.Data.Repositories.Interfaces
 		 * * @param Message
 		 * * @return Message
 		 */
-        ATM_Message GetMessage(  );     //REIKIA
+        Task<ATM_Message> GetMessage(int id);     //REIKIA
 
     }
 	

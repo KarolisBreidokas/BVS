@@ -17,13 +17,15 @@ namespace BVS.Controllers
         private readonly IJobRepository repoJob;
         private readonly IMessageRepository repoMessages;
         private readonly IPartRepository repoPart;
+        private readonly ISubscriptionRepository repoSub;
 
-        public ATMController(IATM_Repository repo, IJobRepository repoJob, IMessageRepository repoMessages, IPartRepository repoPart)
+        public ATMController(IATM_Repository repo, IJobRepository repoJob, IMessageRepository repoMessages, IPartRepository repoPart, ISubscriptionRepository repoSub)
         {
             this.repo = repo;
             this.repoJob = repoJob;
             this.repoMessages = repoMessages;
             this.repoPart = repoPart;
+            this.repoSub = repoSub;
         }
 
         public async Task<IActionResult> ViewATMs()
@@ -99,6 +101,8 @@ namespace BVS.Controllers
 
         public async Task<ActionResult> MessageATM()
         {
+            MessageController messageController = new MessageController();
+
             Random rand = new Random();
             var atms = await repo.getATMs();
             int mes = rand.Next(1, 5);
@@ -122,9 +126,11 @@ namespace BVS.Controllers
 
                 await repoJob.CreateJob(new NewJobDto() { Description = message, State = Data.Models.JobState.Nepriskirtas });
 
-                await repoMessages.SaveMessage(brokenPart);
+                int messageId = await repoMessages.SaveMessage(brokenPart);
 
-                
+                var listUser = await repoSub.GetByATM(listOfATMs[atm].Id);
+
+                await messageController.InformUser(messageId, repoMessages, listUser);
 
 
                 //informuoti vartotojus kad bankomatas neveikia
@@ -160,9 +166,10 @@ namespace BVS.Controllers
 
                 await repoJob.CreateJob(new NewJobDto() { Description = message, State = Data.Models.JobState.Nepriskirtas });
 
-                await repoMessages.SaveMessage(emptyCartridge);
-                
+                int messageId = await repoMessages.SaveMessage(emptyCartridge);
 
+                var listUser = await repoSub.GetByATM(listOfATMs[atm].Id);
+                await messageController.InformUser(messageId, repoMessages, listUser);
                 //informuoti vartotojus kad bankomate liko nedaug pinigu
             }
             else
@@ -178,7 +185,10 @@ namespace BVS.Controllers
                     Date = DateTime.Now,
                     Body = "Grazi diena"
                 };
-                await repoMessages.SaveMessage(noProblems);
+                int messageId = await repoMessages.SaveMessage(noProblems);
+
+                var listUser = await repoSub.GetByATM(listOfATMs[atm].Id);
+                await messageController.InformUser(messageId, repoMessages, listUser);
             }
 
             return Redirect("ViewATMs");
