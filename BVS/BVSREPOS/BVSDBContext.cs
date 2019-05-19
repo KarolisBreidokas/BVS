@@ -1,4 +1,5 @@
-﻿using BVS.Data.Models;
+﻿using System;
+using BVS.Data.Models;
 using DevOne.Security.Cryptography.BCrypt;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,10 +46,23 @@ namespace BVS.Data
                 }
             );
             //modelBuilder.Entity<ATM_Part>().HasData(
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            //    //Insert ATM_Part Here
+            //);
+            //modelBuilder.Entity<Cartridge>().HasData(
+            //    //Insert Cartridge Here
+=======
+>>>>>>> c2fe60aca045947710abec150fa337278b4e21f7
             ////Insert ATM_Part Here
             //);
             //modelBuilder.Entity<Cartridge>().HasData(
             ////Insert Cartridge Here
+<<<<<<< HEAD
+=======
+>>>>>>> b864cb3080c4ab6bd805595b248b167c0df76b9a
+>>>>>>> c2fe60aca045947710abec150fa337278b4e21f7
             //);
         }
 
@@ -69,8 +83,8 @@ namespace BVS.Data
             modelBuilder.Entity<Cartridge>();
             modelBuilder.Entity<EmptyCasseteMessage>()
                 .HasOne(x => x.Cartridge)
-                .WithOne()
-                .HasForeignKey<EmptyCasseteMessage>(x => x.CartridgeId);
+                .WithMany()
+                .HasForeignKey(x => x.CartridgeId);
             modelBuilder.Entity<InformationalMessage>();
             var jobEntity = modelBuilder.Entity<Job>();
             jobEntity.HasMany(x => x.Reports)
@@ -99,7 +113,8 @@ namespace BVS.Data
                 .HasForeignKey(x => x.PartId);
             modelBuilder.Entity<PartBrokenMessage>()
                 .HasOne(x => x.Part)
-                .WithOne().HasForeignKey<PartBrokenMessage>(x => x.PartId);
+                .WithMany()
+                .HasForeignKey(x => x.PartId);
             var partStorageEntity=modelBuilder.Entity<PartInStorage>();
             partStorageEntity.HasKey(x => new {x.PartId, x.RackId});
             partStorageEntity.HasOne(x => x.parts)
