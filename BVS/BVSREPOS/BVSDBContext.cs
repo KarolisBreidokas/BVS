@@ -1,4 +1,5 @@
-﻿using BVS.Data.Models;
+﻿using System;
+using BVS.Data.Models;
 using DevOne.Security.Cryptography.BCrypt;
 using Microsoft.EntityFrameworkCore;
 
@@ -69,8 +70,8 @@ namespace BVS.Data
             modelBuilder.Entity<Cartridge>();
             modelBuilder.Entity<EmptyCasseteMessage>()
                 .HasOne(x => x.Cartridge)
-                .WithOne()
-                .HasForeignKey<EmptyCasseteMessage>(x => x.CartridgeId);
+                .WithMany()
+                .HasForeignKey(x => x.CartridgeId);
             modelBuilder.Entity<InformationalMessage>();
             var jobEntity = modelBuilder.Entity<Job>();
             jobEntity.HasMany(x => x.Reports)
@@ -99,7 +100,8 @@ namespace BVS.Data
                 .HasForeignKey(x => x.PartId);
             modelBuilder.Entity<PartBrokenMessage>()
                 .HasOne(x => x.Part)
-                .WithOne().HasForeignKey<PartBrokenMessage>(x => x.PartId);
+                .WithMany()
+                .HasForeignKey(x => x.PartId);
             var partStorageEntity=modelBuilder.Entity<PartInStorage>();
             partStorageEntity.HasKey(x => new {x.PartId, x.RackId});
             partStorageEntity.HasOne(x => x.parts)

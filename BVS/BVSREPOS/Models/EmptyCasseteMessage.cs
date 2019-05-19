@@ -10,7 +10,7 @@ namespace BVS.Data.Models
     public class EmptyCasseteMessage : AttentionNeededMessage
     {
         public Cartridge Cartridge { get; set; }
-
+        [Column("PartId")]
         public int CartridgeId { get; set; }
     }
 
