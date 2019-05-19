@@ -23,7 +23,7 @@ namespace BVS.Controllers
         public async Task<IActionResult> Index()
         {
             var atms =await _atmRepository.getATMs();
-            var data =await _mapService.FindLocations(atms);
+            var data =await _mapService.GetAtmLocations(atms);
             return View(data);
         }
     }

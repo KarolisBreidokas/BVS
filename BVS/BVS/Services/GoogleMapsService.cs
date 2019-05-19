@@ -13,7 +13,7 @@ namespace BVS.Services
     public class GoogleMapsService : IMapService
     {
 
-        public async Task<ICollection<MapDataDto>> FindLocations(ICollection<ATM> atms)
+        public async Task<ICollection<MapDataDto>> GetAtmLocations(ICollection<ATM> atms)
         {
             var t = new GoogleMaps.LocationServices.GoogleLocationService();
             var ans = atms.Select(x =>

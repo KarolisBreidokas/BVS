@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="package.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="GoogleMaps.LocationServices" Version="1.2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />

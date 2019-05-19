@@ -9,6 +9,6 @@ namespace BVS.Services.Interfaces
 {
     public interface IMapService
     {
-        Task<ICollection<MapDataDto>> FindLocations(ICollection<ATM> atms);
+        Task<ICollection<MapDataDto>> GetAtmLocations(ICollection<ATM> atms);
     }
 }

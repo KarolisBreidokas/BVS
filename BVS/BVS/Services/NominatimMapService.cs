@@ -11,7 +11,7 @@ namespace BVS.Services
 {
     public class NominatimMapService:IMapService
     {
-        public async Task<ICollection<MapDataDto>> FindLocations(ICollection<ATM> atms)
+        public async Task<ICollection<MapDataDto>> GetAtmLocations(ICollection<ATM> atms)
         {
             var t = new ForwardGeocoder();
             var ans = atms.AsParallel().Select(async x =>
