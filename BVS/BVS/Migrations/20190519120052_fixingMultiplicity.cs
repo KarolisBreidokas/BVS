@@ -42,13 +42,6 @@ namespace BVS.Migrations
                 table: "atmMessages",
                 column: "PartId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_atmMessages_ATM_Parts_PartId1",
-                table: "atmMessages",
-                column: "PartId",
-                principalTable: "ATM_Parts",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
