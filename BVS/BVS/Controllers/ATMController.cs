@@ -76,8 +76,8 @@ namespace BVS.Controllers
             };
             await repo.changeATMData(atmId, update);
 
-            var atm = await repo.getATM(atmId);
-            return View(atm);
+            var atms = await repo.getATMs();
+            return View("ViewATMs", atms);
         }
 
         [HttpPost]
@@ -131,9 +131,6 @@ namespace BVS.Controllers
                 var listUser = await repoSub.GetByATM(listOfATMs[atm].Id);
 
                 await messageController.InformUser(messageId, repoMessages, listUser);
-
-
-                //informuoti vartotojus kad bankomatas neveikia
             }
             else if (mes == 2)
             {

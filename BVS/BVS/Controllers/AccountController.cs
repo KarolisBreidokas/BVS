@@ -44,7 +44,7 @@ namespace BVS.Controllers
             var user = await _repository.checkData(details);
             if (user is null)
             {
-
+                
                 ViewBag.Error = @"Wrong Username or Password";
                 return View();
             }
@@ -55,7 +55,7 @@ namespace BVS.Controllers
             }
             if(user is StorageWorker)
             {
-                return RedirectToAction("OrdersPage","Warehouse");                  
+                return RedirectToAction("WarehousePage", "Warehouse");
             }
             else
             {

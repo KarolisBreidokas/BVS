@@ -23,7 +23,7 @@
     <text>
     L.marker([@t.Location.Latitude,@t.Location.Longitude])
         .addTo(map)
-        .bindPopup('@t.Atm.Address<br>@t.Atm.AditionalInfo @Html.ActionLink("Subscribe","Subscribe","Subscription") ');
+        .bindPopup('@t.Atm.Address<br>@t.Atm.AditionalInfo @Html.ActionLink("Subscribe","Subscribe","Subscription", new { id = t.Atm.Id }) ');
     </text>
     }
 </script>
