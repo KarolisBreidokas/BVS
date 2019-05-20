@@ -43,9 +43,9 @@
         <b>Start: </b>
         <select id="start">
             
-            @foreach (var a in Model)
+            @foreach (var a in address)
             {   
-                <option value="@a.Reason.Autor.Address">@a.Reason.Autor.Address</option>
+                <option value="@a">@a</option>
             }
         </select>
         <b>End: </b>
