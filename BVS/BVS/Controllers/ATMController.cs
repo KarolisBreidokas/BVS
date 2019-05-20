@@ -124,9 +124,13 @@ namespace BVS.Controllers
                     PartId = parts[partId].Id
                 };
 
-                await repoJob.CreateJob(new NewJobDto() { Description = message, State = Data.Models.JobState.Nepriskirtas });
-
                 int messageId = await repoMessages.SaveMessage(brokenPart);
+                await repoJob.CreateJob(new NewJobDto() {
+                    Description = message,
+                    State = Data.Models.JobState.Nepriskirtas,
+                    MessageId=messageId
+                });
+
 
                 var listUser = await repoSub.GetByATM(listOfATMs[atm].Id);
 

@@ -6,6 +6,7 @@ namespace BVS.Data.DTOs
 {
     public class NewJobDto
     {
+        public int MessageId;
         public string Description;
         public JobState State;
 

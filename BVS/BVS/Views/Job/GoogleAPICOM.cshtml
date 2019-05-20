@@ -3,7 +3,7 @@
     ViewData["Title"] = "OverpassAPICOM";
 }
 
-@{ List<string> address = new List<string> { "Taikos pr. 88-2 Kaunas", "V. Krėvės pr. 33-41 Kaunas", "Užnerio g., Kaunas" };}
+@{ List<string> address = new List<string> { "Karaliaus Mindaugo pr., Kaunas", "Laisvės al. 20 Kaunas", "Laisvės al. 5" };}
 
 
 <style>
@@ -68,9 +68,9 @@
         <div>
             <b>Start:</b>
             <select id="start">
-                @foreach (var a in address)
+                @foreach (var a in Model)
                 {
-                    <option value="@a">@a</option>
+                    <option value="@a.Reason.Autor.Address">@a.Reason.Autor.Address</option>
                 }
 
             </select>
@@ -78,17 +78,17 @@
             <b>Waypoints:</b> <br>
             <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
             <select multiple id="waypoints">
-                @foreach (var a in address)
+                @foreach (var a in Model)
                 {
-                    <option value="@a">@a</option>
+                    <option value="@a.Reason.Autor.Address">@a.Reason.Autor.Address</option>
                 }
             </select>
             <br>
             <b>End:</b>
             <select id="end">
-                @foreach (var a in address)
+                @foreach (var a in Model)
                 {
-                    <option value="@a">@a</option>
+                    <option value="@a.Reason.Autor.Address">@a.Reason.Autor.Address</option>
                 }
             </select>
             <br>

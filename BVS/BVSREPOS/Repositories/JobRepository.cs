@@ -42,7 +42,8 @@ namespace BVS.Data.Repositories
             var jobEntity = new Job
             {
                 Description = message.Description,
-                State = message.State
+                State = message.State,
+                MessageId =message.MessageId
             };
             _jobs.Add(jobEntity);
             await _context.SaveChangesAsync();
