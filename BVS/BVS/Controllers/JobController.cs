@@ -29,7 +29,14 @@ namespace BVS.Controllers
         public async Task<IActionResult> JobList(ICollection<int> selectedJobsId)
         {
             await repo.AssignWorker(HttpContext.Session.GetComplex<User>("User").Id, selectedJobsId);
-            return View();        //Viewas kaip suprantu kaskur kitur numeta rodo kelia turbut
+            return View("GoogleAPICOM", selectedJobsId);       //Viewas kaip suprantu kaskur kitur numeta rodo kelia turbut
         }
+
+        public async void GenerateRouteMap()
+        {
+            Job a = new Job();
+        }
+
+
     }
 }
