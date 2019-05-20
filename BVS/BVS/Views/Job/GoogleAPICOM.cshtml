@@ -3,35 +3,59 @@
     ViewData["Title"] = "OverpassAPICOM";
 }
 
-@{ List<string> address = new List<string> { "Taikos pr. 88-2 Kaunas", "V. Krėvės pr. 33-41 Kaunas", "Užnerio g., Kaunas"};}
+@{ List<string> address = new List<string> { "Taikos pr. 88-2 Kaunas", "V. Krėvės pr. 33-41 Kaunas", "Užnerio g., Kaunas" };}
 
 
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 400px;
-        width: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #floating-panel {
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
+<style>
+    #right-panel {
         font-family: 'Roboto','sans-serif';
         line-height: 30px;
         padding-left: 10px;
-      }
-    </style>
+    }
+
+        #right-panel select, #right-panel input {
+            font-size: 15px;
+        }
+
+        #right-panel select {
+            width: 100%;
+        }
+
+        #right-panel i {
+            font-size: 12px;
+        }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #map {
+        height: 400px;
+        float: left;
+        width: 70%;
+    }
+
+    #right-panel {
+        margin: 20px;
+        border-width: 2px;
+        width: 20%;
+        height: 400px;
+        float: left;
+        text-align: left;
+        padding-top: 0;
+    }
+
+    #directions-panel {
+        margin-top: 10px;
+        background-color: #FFEE77;
+        padding: 10px;
+        overflow: scroll;
+        height: 174px;
+    }
+</style>
+
 
 
 <h2>GoogleAPICOM</h2>
@@ -39,60 +63,93 @@
 
 <div>
     <!--The div element for the map -->
-    <div id="floating-panel">
-        <b>Start: </b>
-        <select id="start">
-            
-            @foreach (var a in address)
-            {   
-                <option value="@a">@a</option>
-            }
-        </select>
-        <b>End: </b>
-        <select id="end">
-            @foreach (var a in address)
-            {
-                <option value="@a">@a</option>
-            }
-        </select>
-    </div>
     <div id="map"></div>
+    <div id="right-panel">
+        <div>
+            <b>Start:</b>
+            <select id="start">
+                @foreach (var a in address)
+                {
+                    <option value="@a">@a</option>
+                }
+
+            </select>
+            <br>
+            <b>Waypoints:</b> <br>
+            <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
+            <select multiple id="waypoints">
+                @foreach (var a in address)
+                {
+                    <option value="@a">@a</option>
+                }
+            </select>
+            <br>
+            <b>End:</b>
+            <select id="end">
+                @foreach (var a in address)
+                {
+                    <option value="@a">@a</option>
+                }
+            </select>
+            <br>
+            <input type="submit" id="submit">
+        </div>
+        <div id="directions-panel"></div>
+    </div>
     <script>
         function initMap() {
             var directionsService = new google.maps.DirectionsService;
             var directionsDisplay = new google.maps.DirectionsRenderer;
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 7,
-                center: { lat: 54.901163, lng:  23.908613 }
+                zoom: 6,
+                center: { lat: 54.901163, lng: 23.908613 }
             });
             directionsDisplay.setMap(map);
 
-            var onChangeHandler = function () {
+            document.getElementById('submit').addEventListener('click', function () {
                 calculateAndDisplayRoute(directionsService, directionsDisplay);
-            };
-            document.getElementById('start').addEventListener('change', onChangeHandler);
-            document.getElementById('end').addEventListener('change', onChangeHandler);
+            });
         }
 
         function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+            var waypts = [];
+            var checkboxArray = document.getElementById('waypoints');
+            for (var i = 0; i < checkboxArray.length; i++) {
+                if (checkboxArray.options[i].selected) {
+                    waypts.push({
+                        location: checkboxArray[i].value,
+                        stopover: true
+                    });
+                }
+            }
+
             directionsService.route({
                 origin: document.getElementById('start').value,
                 destination: document.getElementById('end').value,
+                waypoints: waypts,
+                optimizeWaypoints: true,
                 travelMode: 'DRIVING'
             }, function (response, status) {
                 if (status === 'OK') {
                     directionsDisplay.setDirections(response);
+                    var route = response.routes[0];
+                    var summaryPanel = document.getElementById('directions-panel');
+                    summaryPanel.innerHTML = '';
+                    // For each route, display summary information.
+                    for (var i = 0; i < route.legs.length; i++) {
+                        var routeSegment = i + 1;
+                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                            '</b><br>';
+                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+                    }
                 } else {
                     window.alert('Directions request failed due to ' + status);
                 }
             });
         }
     </script>
-    <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmn7WcBWjrYg4vRtqQc7eqPF4EjeNAyo8&callback=initMap">
     </script>
